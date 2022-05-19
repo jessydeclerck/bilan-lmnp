@@ -1,26 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {Container, Grid, Slider, Paper} from "@mui/material";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <>
+            <Container maxWidth="lg" className="container">
+
+                <header>
+                    <h1>Bilan prévisionnel LMNP</h1>
+                </header>
+                <main>
+                    <Grid container spacing={2}>
+                        <Grid item xs={3}>
+                            <Paper>
+                            <Slider
+                                aria-label="auto"
+                                defaultValue={30}
+                                valueLabelDisplay="on"
+                                step={10}
+                                marks
+                                min={10}
+                                max={110}
+                            />
+                            </Paper>
+                        </Grid>
+                        <Grid item xs={3}>World</Grid>
+                        <Grid item xs={3}>1</Grid>
+                        <Grid item xs={3}>2</Grid>
+                        <Grid item xs={3}>3</Grid>
+                    </Grid>
+                </main>
+            </Container>
+
+        </>
+    );
 }
 
 export default App;
