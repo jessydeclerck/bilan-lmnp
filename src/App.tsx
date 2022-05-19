@@ -1,38 +1,113 @@
 import React from 'react';
 import './App.css';
-import {Container, Grid, Slider, Paper} from "@mui/material";
+import {Container, CssBaseline, Grid, Paper, Slider, ThemeOptions, AppBar} from "@mui/material";
+import {createTheme, ThemeProvider} from '@mui/material/styles';
+import {blue, amber, grey} from "@mui/material/colors";
+
+
+const themeOptions: ThemeOptions = {
+    palette: {
+        primary: {
+            main: blue[700]
+        },
+        secondary: {
+            main: amber[500]
+        },
+        background: {
+            default: grey[300],
+            paper: grey[200]
+        },
+    },
+};
+
+const theme = createTheme(themeOptions);
+
 
 function App() {
     return (
         <>
-            <Container maxWidth="lg" className="container">
+            <ThemeProvider theme={theme}>
+                <CssBaseline>
+                        <header>
+                            <AppBar position="static"><h1>Bilan prévisionnel LMNP</h1></AppBar>
 
-                <header>
-                    <h1>Bilan prévisionnel LMNP</h1>
-                </header>
-                <main>
-                    <Grid container spacing={2}>
-                        <Grid item xs={3}>
-                            <Paper>
-                            <Slider
-                                aria-label="auto"
-                                defaultValue={30}
-                                valueLabelDisplay="on"
-                                step={10}
-                                marks
-                                min={10}
-                                max={110}
-                            />
-                            </Paper>
-                        </Grid>
-                        <Grid item xs={3}>World</Grid>
-                        <Grid item xs={3}>1</Grid>
-                        <Grid item xs={3}>2</Grid>
-                        <Grid item xs={3}>3</Grid>
-                    </Grid>
-                </main>
-            </Container>
-
+                        </header>
+                    <Container maxWidth="lg" className="container">
+                        <main>
+                            <Grid container spacing={2}>
+                                <Grid item xs={3}>
+                                    <Paper elevation={3} className="input-wrapper">
+                                        <h2>Taux</h2>
+                                        <Slider
+                                            aria-label="auto"
+                                            defaultValue={30}
+                                            valueLabelDisplay="on"
+                                            step={10}
+                                            marks
+                                            min={10}
+                                            max={110}
+                                        />
+                                    </Paper>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Paper elevation={3} className="input-wrapper">
+                                        <h2>Taux</h2>
+                                        <Slider
+                                            aria-label="auto"
+                                            defaultValue={30}
+                                            valueLabelDisplay="on"
+                                            step={10}
+                                            marks
+                                            min={10}
+                                            max={110}
+                                        />
+                                    </Paper>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Paper elevation={3} className="input-wrapper">
+                                        <h2>Taux</h2>
+                                        <Slider
+                                            aria-label="auto"
+                                            defaultValue={30}
+                                            valueLabelDisplay="on"
+                                            step={10}
+                                            marks
+                                            min={10}
+                                            max={110}
+                                        />
+                                    </Paper>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Paper elevation={3} className="input-wrapper">
+                                        <h2>Taux</h2>
+                                        <Slider
+                                            aria-label="auto"
+                                            defaultValue={30}
+                                            valueLabelDisplay="on"
+                                            step={10}
+                                            marks
+                                            min={10}
+                                            max={110}
+                                        />
+                                    </Paper>
+                                </Grid>
+                                <Grid item xs={3}><Paper elevation={3} className="input-wrapper">
+                                    <h2>Taux</h2>
+                                    <Slider
+                                        aria-label="auto"
+                                        defaultValue={30}
+                                        valueLabelDisplay="on"
+                                        step={10}
+                                        marks
+                                        min={10}
+                                        max={110}
+                                    />
+                                </Paper></Grid>
+                            </Grid>
+                        </main>
+                    </Container>
+                </CssBaseline>
+            </ThemeProvider>
         </>
     );
 }
