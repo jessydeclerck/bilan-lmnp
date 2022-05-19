@@ -1,5 +1,6 @@
 import {Grid, Input, InputLabel, Paper, Slider} from "@mui/material";
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import {ChangeEvent, useEffect, useState} from "react";
 
 interface BilanParameterProps {
     label: string;
@@ -13,18 +14,55 @@ const inputLabelStyle = {
     color: 'black',
 }
 
+const stepsValue = {
+    step: 0.01,
+    min: 0.5,
+    max: 3
+}
+
+const marks = [
+    {
+        value: 1,
+        label: '1%'
+    },
+    {
+        value: 1.5,
+        label: '1.5%'
+    },
+    {
+      value: 2,
+      label: '2%'
+    },
+    {
+        value: 2.5,
+        label: '2.5%'
+    },
+]
+
 function valuetext(value: number) {
     return `${value}%`;
 }
 
 function BilanParameter(props: BilanParameterProps): JSX.Element {
+    const [tauxEmprunt, setTauxEmprunt] = useState(1.5);
     const {label, children} = props;
+
+    useEffect(() => {
+        console.log(tauxEmprunt)
+    }, [tauxEmprunt])
+
+    const handleSliderChange = (event: Event, newValue: number | number[]) => {
+        setTauxEmprunt(Number(newValue))
+    }
+
+    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setTauxEmprunt(Number(event.target.value));
+    }
 
     return <Paper elevation={3} sx={{
         marginBlockStart: '20px',
         marginBlockEnd: '20px',
         padding: '5px 10px',
-        borderBox: 'box-sizing',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-start',
@@ -37,13 +75,14 @@ function BilanParameter(props: BilanParameterProps): JSX.Element {
             <Grid item xs={8}>
                 <Slider
                     aria-label={label}
-                    defaultValue={1.5}
+                    value={tauxEmprunt}
+                    onChange={handleSliderChange}
                     getAriaValueText={valuetext}
                     valueLabelDisplay={"auto"}
-                    step={0.1}
-                    marks
-                    min={0.5}
-                    max={3}
+                    step={stepsValue.step}
+                    marks={marks}
+                    min={stepsValue.min}
+                    max={stepsValue.max}
                     sx={{
                         alignSelf: 'center',
                     }}
@@ -52,20 +91,20 @@ function BilanParameter(props: BilanParameterProps): JSX.Element {
             </Grid>
             <Grid item>
                 <Input
-                    value="1.5"
+                    value={tauxEmprunt}
+                    onChange={handleInputChange}
                     size="small"
                     inputProps={{
-                        step: 10,
-                        min: 0,
-                        max: 100,
+                        step: stepsValue.step,
+                        min: stepsValue.min,
                         type: 'number',
                         'aria-labelledby': 'input-slider',
                     }}
-                    sx={{width: '42px'}}
+                    sx={{width: '50px'}}
                 />
             </Grid>
         </Grid>
-        {props.children}
+        {children}
     </Paper>;
 }
 

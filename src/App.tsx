@@ -40,59 +40,14 @@ function App() {
                                     <BilanParameter label={"Taux emprunt"}><></></BilanParameter>
                                 </Grid>
                                 <Grid item xs={3}>
-                                    <Paper elevation={3} className="input-wrapper">
-                                        <h2>Taux</h2>
-                                        <Slider
-                                            aria-label="auto"
-                                            defaultValue={30}
-                                            valueLabelDisplay="on"
-                                            step={10}
-                                            marks
-                                            min={10}
-                                            max={110}
-                                        />
-                                    </Paper>
+
                                 </Grid>
                                 <Grid item xs={3}>
-                                    <Paper elevation={3} className="input-wrapper">
-                                        <h2>Taux</h2>
-                                        <Slider
-                                            aria-label="auto"
-                                            defaultValue={30}
-                                            valueLabelDisplay="on"
-                                            step={10}
-                                            marks
-                                            min={10}
-                                            max={110}
-                                        />
-                                    </Paper>
+
                                 </Grid>
                                 <Grid item xs={3}>
-                                    <Paper elevation={3} className="input-wrapper">
-                                        <h2>Taux</h2>
-                                        <Slider
-                                            aria-label="auto"
-                                            defaultValue={30}
-                                            valueLabelDisplay="on"
-                                            step={10}
-                                            marks
-                                            min={10}
-                                            max={110}
-                                        />
-                                    </Paper>
                                 </Grid>
-                                <Grid item xs={3}><Paper elevation={3} className="input-wrapper">
-                                    <h2>Taux</h2>
-                                    <Slider
-                                        aria-label="auto"
-                                        defaultValue={30}
-                                        valueLabelDisplay="on"
-                                        step={10}
-                                        marks
-                                        min={10}
-                                        max={110}
-                                    />
-                                </Paper></Grid>
+                                <Grid item xs={3}></Grid>
                             </Grid>
                         </main>
                     </Container>
