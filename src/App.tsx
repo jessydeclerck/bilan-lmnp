@@ -3,6 +3,7 @@ import './App.css';
 import {Container, CssBaseline, Grid, Paper, Slider, ThemeOptions, AppBar} from "@mui/material";
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {blue, amber, grey} from "@mui/material/colors";
+import BilanParameter from "./BilanParameter";
 
 
 const themeOptions: ThemeOptions = {
@@ -35,19 +36,8 @@ function App() {
                     <Container maxWidth="lg" className="container">
                         <main>
                             <Grid container spacing={2}>
-                                <Grid item xs={3}>
-                                    <Paper elevation={3} className="input-wrapper">
-                                        <h2>Taux</h2>
-                                        <Slider
-                                            aria-label="auto"
-                                            defaultValue={30}
-                                            valueLabelDisplay="on"
-                                            step={10}
-                                            marks
-                                            min={10}
-                                            max={110}
-                                        />
-                                    </Paper>
+                                <Grid item xs={5}>
+                                    <BilanParameter label={"Taux emprunt"}><></></BilanParameter>
                                 </Grid>
                                 <Grid item xs={3}>
                                     <Paper elevation={3} className="input-wrapper">
