@@ -6,6 +6,7 @@ import {blue, amber, grey} from "@mui/material/colors";
 import BilanParameterInput from "./inputs/BilanParameterInput";
 import TauxEmpruntInput from "./inputs/TauxEmpruntInput";
 import MontantEmpruntInput from "./inputs/MontantEmpruntInput";
+import LoyerInput from "./inputs/LoyerInput";
 
 
 const themeOptions: ThemeOptions = {
@@ -45,7 +46,7 @@ function App() {
                                     <MontantEmpruntInput />
                                 </Grid>
                                 <Grid item xs={3}>
-
+                                    <LoyerInput />
                                 </Grid>
                                 <Grid item xs={3}>
                                 </Grid>
