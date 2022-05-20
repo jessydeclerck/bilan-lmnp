@@ -1,18 +1,7 @@
-import {Grid, Input, InputLabel, Paper, Slider} from "@mui/material";
-import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import {ChangeEvent, useEffect, useState} from "react";
-
-interface BilanParameterProps {
-    label: string;
-    children: JSX.Element[] | JSX.Element;
-}
-
-const inputLabelStyle = {
-    fontWeight: 'bold',
-    fontSize: '1.5em',
-    lineHeight: 1.5,
-    color: 'black',
-}
+import {Grid, Input, InputAdornment, Slider} from "@mui/material";
+import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+import {ChangeEvent, useState} from "react";
+import BilanParameterInput from "./BilanParameterInput";
 
 const stepsValue = {
     step: 0.01,
@@ -30,8 +19,8 @@ const marks = [
         label: '1.5%'
     },
     {
-      value: 2,
-      label: '2%'
+        value: 2,
+        label: '2%'
     },
     {
         value: 2.5,
@@ -39,17 +28,15 @@ const marks = [
     },
 ]
 
+const label = "Taux emprunt"
+
 function valuetext(value: number) {
     return `${value}%`;
 }
 
-function BilanParameter(props: BilanParameterProps): JSX.Element {
+function TauxEmpruntInput(): JSX.Element {
     const [tauxEmprunt, setTauxEmprunt] = useState(1.5);
-    const {label, children} = props;
 
-    useEffect(() => {
-        console.log(tauxEmprunt)
-    }, [tauxEmprunt])
 
     const handleSliderChange = (event: Event, newValue: number | number[]) => {
         setTauxEmprunt(Number(newValue))
@@ -59,15 +46,8 @@ function BilanParameter(props: BilanParameterProps): JSX.Element {
         setTauxEmprunt(Number(event.target.value));
     }
 
-    return <Paper elevation={3} sx={{
-        marginBlockStart: '20px',
-        marginBlockEnd: '20px',
-        padding: '5px 10px',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-    }}>
-        <InputLabel sx={inputLabelStyle}>{label}</InputLabel>
+    return (
+        <BilanParameterInput label={label}>
         <Grid container spacing={2} justifyContent={"center"} sx={{marginTop: '0px'}}>
             <Grid item>
                 <AccountBalanceIcon/>
@@ -100,12 +80,13 @@ function BilanParameter(props: BilanParameterProps): JSX.Element {
                         type: 'number',
                         'aria-labelledby': 'input-slider',
                     }}
-                    sx={{width: '50px'}}
+                    startAdornment={<InputAdornment position="end">%</InputAdornment>}
+                    sx={{width: '70px'}}
                 />
             </Grid>
         </Grid>
-        {children}
-    </Paper>;
+        </BilanParameterInput>
+    );
 }
 
-export default BilanParameter;
+export default TauxEmpruntInput;
