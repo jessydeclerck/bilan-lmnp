@@ -1,6 +1,16 @@
 import React from 'react';
 import './App.css';
-import {Container, CssBaseline, Grid, Paper, Slider, ThemeOptions, AppBar} from "@mui/material";
+import {
+    Container,
+    CssBaseline,
+    Grid,
+    Paper,
+    Slider,
+    ThemeOptions,
+    AppBar,
+    OutlinedInput,
+    InputLabel, InputAdornment
+} from "@mui/material";
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {blue, amber, grey} from "@mui/material/colors";
 import BilanParameterInput from "./inputs/BilanParameterInput";
@@ -39,7 +49,7 @@ function App() {
                     <Container maxWidth="lg" className="container">
                         <main>
                             <Grid container spacing={2}>
-                                <Grid item xs={5}>
+                                <Grid item xs={6}>
                                     <TauxEmpruntInput />
                                 </Grid>
                                 <Grid item xs={3}>
@@ -48,7 +58,7 @@ function App() {
                                 <Grid item xs={3}>
                                     <LoyerInput />
                                 </Grid>
-                                <Grid item xs={3}>
+                                <Grid item xs={5}>
                                 </Grid>
                                 <Grid item xs={3}></Grid>
                             </Grid>

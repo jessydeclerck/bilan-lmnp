@@ -6,7 +6,7 @@ import BilanParameterInput from "./BilanParameterInput";
 const stepsValue = {
     step: 0.01,
     min: 0.5,
-    max: 3
+    max: 5
 }
 
 const marks = [
@@ -25,6 +25,22 @@ const marks = [
     {
         value: 2.5,
         label: '2.5%'
+    },
+    {
+        value: 3,
+        label: '3%'
+    },
+    {
+        value: 3.5,
+        label: '3.5%'
+    },
+    {
+        value: 4,
+        label: '4%'
+    },
+    {
+        value: 4.5,
+        label: '4.5%'
     },
 ]
 

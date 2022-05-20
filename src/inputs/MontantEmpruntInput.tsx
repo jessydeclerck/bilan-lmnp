@@ -1,6 +1,6 @@
 import BilanParameterInput from "./BilanParameterInput";
 import {ChangeEvent, useEffect, useState} from "react";
-import {Box, InputAdornment, OutlinedInput} from "@mui/material";
+import {Box, InputAdornment, InputLabel, OutlinedInput} from "@mui/material";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 
 const label = "Montant emprunté"
@@ -20,6 +20,7 @@ function MontantEmpruntInput(): JSX.Element {
         <BilanParameterInput label={label}>
             <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-evenly',height: '60%'}}>
                 <AccountBalanceIcon/>
+                <InputLabel htmlFor={"outlined-adornment-amount"}></InputLabel>
                     <OutlinedInput
                         value={montantEmprunt}
                         onChange={handleInputChange}
