@@ -13,10 +13,10 @@ import {
 } from "@mui/material";
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {blue, amber, grey} from "@mui/material/colors";
-import BilanParameterInput from "./inputs/BilanParameterInput";
 import TauxEmpruntInput from "./inputs/TauxEmpruntInput";
 import MontantEmpruntInput from "./inputs/MontantEmpruntInput";
 import LoyerInput from "./inputs/LoyerInput";
+import TravauxInput from "./inputs/TravauxInput";
 
 
 const themeOptions: ThemeOptions = {
@@ -36,7 +36,6 @@ const themeOptions: ThemeOptions = {
 
 const theme = createTheme(themeOptions);
 
-
 function App() {
     return (
         <>
@@ -48,17 +47,18 @@ function App() {
                         </header>
                     <Container maxWidth="lg" className="container">
                         <main>
-                            <Grid container spacing={2}>
-                                <Grid item xs={6}>
+                            <Grid container spacing={2} sx={{marginTop: '0px'}}>
+                                <Grid item xs={6} >
                                     <TauxEmpruntInput />
                                 </Grid>
-                                <Grid item xs={3}>
+                                <Grid item xs={3} >
                                     <MontantEmpruntInput />
                                 </Grid>
                                 <Grid item xs={3}>
                                     <LoyerInput />
                                 </Grid>
                                 <Grid item xs={5}>
+                                    <TravauxInput />
                                 </Grid>
                                 <Grid item xs={3}></Grid>
                             </Grid>

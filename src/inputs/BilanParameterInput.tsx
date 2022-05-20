@@ -16,8 +16,6 @@ function BilanParameterInput(props: BilanParameterProps): JSX.Element {
     const {label, children} = props;
 
     return <Paper elevation={3} sx={{
-        marginBlockStart: '20px',
-        marginBlockEnd: '20px',
         padding: '5px 10px',
         display: 'flex',
         flexDirection: 'column',
