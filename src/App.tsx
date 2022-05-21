@@ -47,33 +47,35 @@ function App() {
                                 <Grid item xs={6}>
                                     <TauxEmpruntInput/>
                                 </Grid>
-                                <Grid item xs={3}>
+                                <Grid item xs={2}>
                                     <MontantEmpruntInput/>
                                 </Grid>
                                 <Grid item xs={3}>
                                     <LoyerInput/>
                                 </Grid>
-                                <Grid item xs={6}>
-                                    <TravauxInput/>
-                                </Grid>
-                                <Grid item xs={3}>
+                                <Grid item xs={2}>
                                     <FraisAgenceInput/>
                                 </Grid>
-                                <Grid item xs={3}>
+                                <Grid item xs={2}>
                                     <FraisNotaireInput/>
                                 </Grid>
                                 <Grid item xs={3}>
                                     <ValeurAppartementInput/>
                                 </Grid>
-                                <Grid item xs={3}>
+                                <Grid item xs={2}>
+                                    <TravauxInput/>
+                                </Grid>
+                                <Grid item xs={2}>
                                     <MeublesInput/>
                                 </Grid>
                                 <Grid item xs={3}>
                                     <ChargesInput/>
                                 </Grid>
-                                <Grid item xs={3}>
+                                <Grid item xs={5}>
                                     <AmortissementInput/>
                                 </Grid>
+
+
 
 
                             </Grid>
