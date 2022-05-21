@@ -13,6 +13,7 @@ import MeublesInput from "./inputs/MeublesInput.";
 import ValeurAppartementInput from "./inputs/ValeurAppartementInput";
 import ChargesInput from "./inputs/ChargesInput";
 import AmortissementInput from "./inputs/AmortissementInput";
+import MapsHomeWorkIcon from '@mui/icons-material/MapsHomeWork';
 
 
 const themeOptions: ThemeOptions = {
@@ -38,7 +39,7 @@ function App() {
             <ThemeProvider theme={theme}>
                 <CssBaseline>
                     <header>
-                        <AppBar position="static"><h1>Bilan prévisionnel LMNP</h1></AppBar>
+                        <AppBar position="static" sx={{display: 'flex', flexDirection: 'row',justifyContent: 'center'}}><MapsHomeWorkIcon sx={{fontSize: 40, marginRight: '10px'}}/><h1> Bilan prévisionnel LMNP</h1></AppBar>
 
                     </header>
                     <Container maxWidth="lg" className="container">
