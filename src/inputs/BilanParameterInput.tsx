@@ -3,6 +3,7 @@ import {InputLabel, Paper} from "@mui/material";
 interface BilanParameterProps {
     label: string;
     children: JSX.Element[] | JSX.Element;
+    height?: string;
 }
 
 const inputLabelStyle = {
@@ -13,14 +14,14 @@ const inputLabelStyle = {
 }
 
 function BilanParameterInput(props: BilanParameterProps): JSX.Element {
-    const {label, children} = props;
+    const {label, children, height = '120px'} = props;
 
     return <Paper elevation={3} sx={{
         padding: '5px 10px',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-start',
-        height: '120px'
+        height
     }}>
         <InputLabel sx={inputLabelStyle}>{label}</InputLabel>
         {children}

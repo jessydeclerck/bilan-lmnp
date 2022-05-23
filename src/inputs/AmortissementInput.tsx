@@ -2,11 +2,22 @@ import BilanParameterInput from "./BilanParameterInput";
 import {Box, Slider, Typography} from "@mui/material";
 import {useState} from "react";
 
-
-const sliderSteps = {
+const defaultSliderSteps = {
     min: 5,
     max: 10,
     step: 1
+}
+
+const bienSliderSteps = {
+    min: 20,
+    max: 50,
+    step: 5
+}
+
+const notaireSliderSteps = {
+    min: 20,
+    max: 40,
+    step: 5
 }
 
 interface sliderMark {
@@ -14,35 +25,117 @@ interface sliderMark {
     label: string
 }
 
-const marks: sliderMark[] = [];
+const generateMarks = (steps: any): sliderMark[] => {
+    const result = [];
+    for (let i = steps.min; i <= steps.max; i += steps.step) {
+        result.push({value: i, label: i + ''})
+    }
+    return result;
+}
 
-for (let i = sliderSteps.min; i <= sliderSteps.max; i += sliderSteps.step) {
-    marks.push({value: i, label: i + ''})
+const defaultMarks = generateMarks(defaultSliderSteps);
+const bienMarks = generateMarks(bienSliderSteps);
+const notaireMarks = generateMarks(notaireSliderSteps);
+
+for (let i = defaultSliderSteps.min; i <= defaultSliderSteps.max; i += defaultSliderSteps.step) {
+    defaultMarks.push({value: i, label: i + ''})
 }
 
 
+const typographyStyle = {fontSize: '13px', color: 'rgba(0, 0, 0, 0.6)'};
+
 function AmortissementInput(): JSX.Element {
     const [dureeAmortissementTravaux, setDureeAmortissementTravaux] = useState(6);
+    const [dureeAmortissementMeubles, setDureeAmortissementMeubles] = useState(6);
+    const [dureeAmortissementAgence, setDureeAmortissementAgence] = useState(6);
+    const [dureeAmortissementBien, setDureeAmortissementBien] = useState(25);
+    const [dureeAmortissementNotaire, setDureeAmortissementNotaire] = useState(20);
 
     const handleDureeAmortissementTravauxChange = (event: Event, newValue: number | number[]) => {
         setDureeAmortissementTravaux(Number(newValue))
     }
+    const handleDureeAmortissementMeublesChange = (event: Event, newValue: number | number[]) => {
+        setDureeAmortissementMeubles(Number(newValue))
+    }
+    const handleDureeAmortissementAgenceChange = (event: Event, newValue: number | number[]) => {
+        setDureeAmortissementAgence(Number(newValue))
+    }
+    const handleDureeAmortissementBienChange = (event: Event, newValue: number | number[]) => {
+        setDureeAmortissementBien(Number(newValue))
+    }
+    const handleDureeAmortissementNotaireChange = (event: Event, newValue: number | number[]) => {
+        setDureeAmortissementNotaire(Number(newValue))
+    }
 
-    return <BilanParameterInput label={"Amortissements"}>
-            <Typography sx={{fontSize: '12px', color: 'rgba(0, 0, 0, 0.6)'}}>Durée amortissement travaux
+    return <BilanParameterInput label={"Amortissements"} height={'100%'}>
+        <Box sx={{display: 'flex', flexDirection: 'column', width: '80%', alignSelf: 'center'}}>
+            <Typography sx={typographyStyle}>Amortissement travaux
                 (années)</Typography>
             <Slider
-                aria-label={"Durée amortissement travaux"}
+                aria-label={"Amortissement travaux"}
                 value={dureeAmortissementTravaux}
                 onChange={handleDureeAmortissementTravauxChange}
                 valueLabelDisplay={"auto"}
-                step={sliderSteps.step}
-                min={sliderSteps.min}
-                max={sliderSteps.max}
-                marks={marks}
+                step={defaultSliderSteps.step}
+                min={defaultSliderSteps.min}
+                max={defaultSliderSteps.max}
+                marks={defaultMarks}
             >
             </Slider>
-    </BilanParameterInput>
+            <Typography sx={typographyStyle}>Amortissement meubles
+                (années)</Typography>
+            <Slider
+                aria-label={"Amortissement meubles"}
+                value={dureeAmortissementMeubles}
+                onChange={handleDureeAmortissementMeublesChange}
+                valueLabelDisplay={"auto"}
+                step={defaultSliderSteps.step}
+                min={defaultSliderSteps.min}
+                max={defaultSliderSteps.max}
+                marks={defaultMarks}
+            >
+            </Slider>
+            <Typography sx={typographyStyle}>Amortissement frais d'agence
+                (années)</Typography>
+            <Slider
+                aria-label={"Amortissement frais d'agence"}
+                value={dureeAmortissementAgence}
+                onChange={handleDureeAmortissementAgenceChange}
+                valueLabelDisplay={"auto"}
+                step={defaultSliderSteps.step}
+                min={defaultSliderSteps.min}
+                max={defaultSliderSteps.max}
+                marks={defaultMarks}
+            >
+            </Slider>
+            <Typography sx={typographyStyle}>Amortissement du bien
+                (années)</Typography>
+            <Slider
+                aria-label={"Amortissement du bien"}
+                value={dureeAmortissementBien}
+                onChange={handleDureeAmortissementBienChange}
+                valueLabelDisplay={"auto"}
+                step={1}
+                min={bienSliderSteps.min}
+                max={bienSliderSteps.max}
+                marks={bienMarks}
+            >
+            </Slider>
+            <Typography sx={typographyStyle}>Amortissement frais de notaire
+                (années)</Typography>
+            <Slider
+                aria-label={"Amortissement frais de notaire"}
+                value={dureeAmortissementNotaire}
+                onChange={handleDureeAmortissementNotaireChange}
+                valueLabelDisplay={"auto"}
+                step={1}
+                min={notaireSliderSteps.min}
+                max={notaireSliderSteps.max}
+                marks={notaireMarks}
+            >
+            </Slider>
+        </Box>
+    </BilanParameterInput>;
 }
 
 export default AmortissementInput;

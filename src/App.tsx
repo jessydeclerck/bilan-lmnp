@@ -14,6 +14,7 @@ import ValeurAppartementInput from "./inputs/ValeurAppartementInput";
 import ChargesInput from "./inputs/ChargesInput";
 import AmortissementInput from "./inputs/AmortissementInput";
 import MapsHomeWorkIcon from '@mui/icons-material/MapsHomeWork';
+import TmiSelect from "./inputs/TmiSelect";
 
 
 const themeOptions: ThemeOptions = {
@@ -48,7 +49,7 @@ function App() {
                                 <Grid item xs={6}>
                                     <TauxEmpruntInput/>
                                 </Grid>
-                                <Grid item xs={2}>
+                                <Grid item xs={3}>
                                     <MontantEmpruntInput/>
                                 </Grid>
                                 <Grid item xs={3}>
@@ -63,7 +64,7 @@ function App() {
                                 <Grid item xs={3}>
                                     <ValeurAppartementInput/>
                                 </Grid>
-                                <Grid item xs={2}>
+                                <Grid item xs={3}>
                                     <TravauxInput/>
                                 </Grid>
                                 <Grid item xs={2}>
@@ -74,6 +75,9 @@ function App() {
                                 </Grid>
                                 <Grid item xs={5}>
                                     <AmortissementInput/>
+                                </Grid>
+                                <Grid item xs={4}>
+                                    <TmiSelect/>
                                 </Grid>
 
 
