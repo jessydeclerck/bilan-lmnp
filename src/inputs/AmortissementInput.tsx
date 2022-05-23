@@ -67,7 +67,7 @@ function AmortissementInput(): JSX.Element {
         setDureeAmortissementNotaire(Number(newValue))
     }
 
-    return <BilanParameterInput label={"Amortissements"} height={'100%'}>
+    return <BilanParameterInput label={"Amortissements"} height={'415px'}>
         <Box sx={{display: 'flex', flexDirection: 'column', width: '80%', alignSelf: 'center'}}>
             <Typography sx={typographyStyle}>Amortissement travaux
                 (années)</Typography>

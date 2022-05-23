@@ -30,7 +30,7 @@ function ChargesInput(): JSX.Element {
         setChargesCoproLocataire(Number(event.target.value));
     }
 
-    return <BilanParameterInput label={"Charges"} height={'100%'}>
+    return <BilanParameterInput label={"Charges"} height={'415px'}>
         <Box sx={{
             display: 'flex',
             flexDirection: 'column',

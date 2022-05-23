@@ -15,6 +15,7 @@ import ChargesInput from "./inputs/ChargesInput";
 import AmortissementInput from "./inputs/AmortissementInput";
 import MapsHomeWorkIcon from '@mui/icons-material/MapsHomeWork';
 import TmiSelect from "./inputs/TmiSelect";
+import Mensualites from "./displays/Mensualites";
 
 
 const themeOptions: ThemeOptions = {
@@ -53,6 +54,9 @@ function App() {
                                     <MontantEmpruntInput/>
                                 </Grid>
                                 <Grid item xs={3}>
+                                    <Mensualites/>
+                                </Grid>
+                                <Grid item xs={3}>
                                     <LoyerInput/>
                                 </Grid>
                                 <Grid item xs={2}>
@@ -64,20 +68,23 @@ function App() {
                                 <Grid item xs={3}>
                                     <ValeurAppartementInput/>
                                 </Grid>
+                                <Grid item xs={2}>
+                                    <MeublesInput/>
+                                </Grid>
                                 <Grid item xs={3}>
                                     <TravauxInput/>
                                 </Grid>
-                                <Grid item xs={2}>
-                                    <MeublesInput/>
+                                <Grid item xs={4}>
+                                    <TmiSelect/>
+                                </Grid>
+                                <Grid item xs={5}>
+
                                 </Grid>
                                 <Grid item xs={3}>
                                     <ChargesInput/>
                                 </Grid>
                                 <Grid item xs={5}>
                                     <AmortissementInput/>
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <TmiSelect/>
                                 </Grid>
 
 
