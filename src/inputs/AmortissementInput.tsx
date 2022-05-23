@@ -1,6 +1,7 @@
 import BilanParameterInput from "./BilanParameterInput";
 import {Box, Slider, Typography} from "@mui/material";
 import {useState} from "react";
+import {generateMarks} from "../Utils/BilanUtils";
 
 const defaultSliderSteps = {
     min: 5,
@@ -20,27 +21,9 @@ const notaireSliderSteps = {
     step: 5
 }
 
-interface sliderMark {
-    value: number;
-    label: string
-}
-
-const generateMarks = (steps: any): sliderMark[] => {
-    const result = [];
-    for (let i = steps.min; i <= steps.max; i += steps.step) {
-        result.push({value: i, label: i + ''})
-    }
-    return result;
-}
-
 const defaultMarks = generateMarks(defaultSliderSteps);
 const bienMarks = generateMarks(bienSliderSteps);
 const notaireMarks = generateMarks(notaireSliderSteps);
-
-for (let i = defaultSliderSteps.min; i <= defaultSliderSteps.max; i += defaultSliderSteps.step) {
-    defaultMarks.push({value: i, label: i + ''})
-}
-
 
 const typographyStyle = {fontSize: '13px', color: 'rgba(0, 0, 0, 0.6)'};
 

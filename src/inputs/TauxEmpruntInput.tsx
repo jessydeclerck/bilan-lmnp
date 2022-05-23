@@ -1,6 +1,6 @@
 import {Grid, Input, InputAdornment, Slider} from "@mui/material";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
-import {ChangeEvent, useState} from "react";
+import {ChangeEvent, ChangeEventHandler, useState} from "react";
 import BilanParameterInput from "./BilanParameterInput";
 
 const stepsValue = {
@@ -50,17 +50,14 @@ function valuetext(value: number) {
     return `${value}%`;
 }
 
-function TauxEmpruntInput(): JSX.Element {
-    const [tauxEmprunt, setTauxEmprunt] = useState(1.5);
+interface TauxEmpruntProps {
+    value: number;
+    handleSliderChangeFunction: (event: Event, newValue: number | number[]) => void;
+    handleInputChangeFunction: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+}
 
-
-    const handleSliderChange = (event: Event, newValue: number | number[]) => {
-        setTauxEmprunt(Number(newValue))
-    }
-
-    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setTauxEmprunt(Number(event.target.value));
-    }
+function TauxEmpruntInput(props:TauxEmpruntProps): JSX.Element {
+    const {value, handleSliderChangeFunction, handleInputChangeFunction} = props;
 
     return (
         <BilanParameterInput label={label}>
@@ -71,8 +68,8 @@ function TauxEmpruntInput(): JSX.Element {
             <Grid item xs={8}>
                 <Slider
                     aria-label={label}
-                    value={tauxEmprunt}
-                    onChange={handleSliderChange}
+                    value={value}
+                    onChange={handleSliderChangeFunction}
                     getAriaValueText={valuetext}
                     valueLabelDisplay={"auto"}
                     step={stepsValue.step}
@@ -87,8 +84,8 @@ function TauxEmpruntInput(): JSX.Element {
             </Grid>
             <Grid item>
                 <Input
-                    value={tauxEmprunt}
-                    onChange={handleInputChange}
+                    value={value}
+                    onChange={handleInputChangeFunction}
                     size="small"
                     inputProps={{
                         step: stepsValue.step,

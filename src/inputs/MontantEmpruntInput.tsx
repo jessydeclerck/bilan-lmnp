@@ -1,21 +1,18 @@
-import {ChangeEvent, useEffect, useState} from "react";
+import {ChangeEventHandler} from "react";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import GenericAmountInput from "./GenericAmountInput";
 
 const label = "Emprunt"
 
-function MontantEmpruntInput(): JSX.Element {
-    const [montantEmprunt, setMontantEmprunt] = useState(0);
+interface MontantEmpruntProps {
+    value: number;
+    handleInputChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+}
 
-    useEffect(() => {
-        console.log("Montant emprunté: " + montantEmprunt)
-    }, [montantEmprunt]);
+function MontantEmpruntInput(props:MontantEmpruntProps): JSX.Element {
+    const {value, handleInputChange} = props;
 
-    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setMontantEmprunt(Number(event.target.value));
-    }
-
-    return <GenericAmountInput label={label} icon={<AccountBalanceIcon/>} value={montantEmprunt} step={500}
+    return <GenericAmountInput label={label} icon={<AccountBalanceIcon/>} value={value} step={500}
                                handleChangeFunction={handleInputChange}/>
 }
 

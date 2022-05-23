@@ -6,8 +6,8 @@ import {ChangeEventHandler} from "react";
 interface GenericAmountProps {
     label: string;
     icon: JSX.Element;
+    step: number;
     value: number;
-    step: number
     handleChangeFunction: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 }
 
@@ -34,7 +34,6 @@ function GenericAmountInput(props: GenericAmountProps): JSX.Element {
             {icon}
             <OutlinedInput
                 sx={{width: '75%'}}
-                label={label}
                 value={value}
                 onChange={handleChangeFunction}
                 size="small"
