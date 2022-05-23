@@ -13,6 +13,8 @@ const inputLabelStyle = {
 interface MensualitesProps {
     taux: number;
     capital: number;
+    dureePret: number;
+    handleDureePretChange: (event: Event, newValue: number | number[]) => void;
 }
 
 const dureeEmpruntSteps = {
@@ -24,12 +26,7 @@ const dureeEmpruntSteps = {
 const dureeMarks = generateMarks(dureeEmpruntSteps, ' ans');
 
 function DureeEmprunt(props: MensualitesProps): JSX.Element {
-    const {taux, capital} = props;
-    const [dureePret, setDureePret] = useState(20);
-
-    const handleDureePretChange = (event: Event, newValue: number | number[]) => {
-        setDureePret(Number(newValue))
-    }
+    const {taux, capital, dureePret, handleDureePretChange} = props;
 
     return <Paper elevation={3} sx={{
         padding: '5px 10px',

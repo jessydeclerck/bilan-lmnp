@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import './App.css';
 import {AppBar, Container, CssBaseline, Grid, ThemeOptions} from "@mui/material";
 import {createTheme, ThemeProvider} from '@mui/material/styles';
@@ -16,6 +16,8 @@ import AmortissementInput from "./inputs/AmortissementInput";
 import MapsHomeWorkIcon from '@mui/icons-material/MapsHomeWork';
 import TmiSelect from "./inputs/TmiSelect";
 import DureeEmprunt from "./displays/DureeEmprunt";
+import {genererTableauAmortissement, LigneAmortissement} from "./services/EmpruntService";
+import TableauAmortissement from "./displays/TableauAmortissement";
 
 
 const themeOptions: ThemeOptions = {
@@ -38,6 +40,12 @@ const theme = createTheme(themeOptions);
 function App() {
     const [tauxEmprunt, setTauxEmprunt] = useState(1.5);
     const [montantEmprunt, setMontantEmprunt] = useState(0);
+    const [dureePret, setDureePret] = useState(20);
+    const [tableauAmortissement, setTableauAmortissement] = useState<LigneAmortissement[]>([])
+
+    const handleDureePretChange = (event: Event, newValue: number | number[]) => {
+        setDureePret(Number(newValue))
+    }
 
     const handleTauxSliderChange = (event: Event, newValue: number | number[]) => {
         setTauxEmprunt(Number(newValue))
@@ -51,25 +59,34 @@ function App() {
         setMontantEmprunt(Number(event.target.value));
     }
 
+    useEffect(() => {
+        setTableauAmortissement(genererTableauAmortissement(montantEmprunt, tauxEmprunt, dureePret));
+    }, [tauxEmprunt, montantEmprunt, dureePret])
+
     return (
         <>
             <ThemeProvider theme={theme}>
                 <CssBaseline>
                     <header>
-                        <AppBar position="static" sx={{display: 'flex', flexDirection: 'row',justifyContent: 'center'}}><MapsHomeWorkIcon sx={{fontSize: 40, marginRight: '10px'}}/><h1> Bilan prévisionnel LMNP</h1></AppBar>
-
+                        <AppBar position="static"
+                                sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}><MapsHomeWorkIcon
+                            sx={{fontSize: 40, marginRight: '10px'}}/><h1> Bilan prévisionnel LMNP</h1></AppBar>
                     </header>
                     <Container maxWidth="lg" className="container">
                         <main>
                             <Grid container spacing={2} sx={{marginTop: '0px'}}>
                                 <Grid item xs={5}>
-                                    <TauxEmpruntInput value={tauxEmprunt} handleInputChangeFunction={handleTauxInputChange} handleSliderChangeFunction={handleTauxSliderChange}/>
+                                    <TauxEmpruntInput value={tauxEmprunt}
+                                                      handleInputChangeFunction={handleTauxInputChange}
+                                                      handleSliderChangeFunction={handleTauxSliderChange}/>
                                 </Grid>
                                 <Grid item xs={2}>
-                                    <MontantEmpruntInput value={montantEmprunt} handleInputChange={handleMontantEmpruntChange}/>
+                                    <MontantEmpruntInput value={montantEmprunt}
+                                                         handleInputChange={handleMontantEmpruntChange}/>
                                 </Grid>
                                 <Grid item xs={5}>
-                                    <DureeEmprunt taux={tauxEmprunt} capital={montantEmprunt}/>
+                                    <DureeEmprunt taux={tauxEmprunt} capital={montantEmprunt} dureePret={dureePret}
+                                                  handleDureePretChange={handleDureePretChange}/>
                                 </Grid>
                                 <Grid item xs={3}>
                                     <LoyerInput/>
@@ -86,20 +103,24 @@ function App() {
                                 <Grid item xs={2}>
                                     <MeublesInput/>
                                 </Grid>
-                                <Grid item xs={3}>
-                                    <TravauxInput/>
+                                <Grid container item spacing={2} xs={6}>
+                                    <Grid item xs={4}>
+                                        <TravauxInput/>
+                                    </Grid>
+                                    <Grid item xs={8}>
+                                        <TmiSelect/>
+                                    </Grid>
+                                    <Grid item xs={4}>
+                                        <ChargesInput/>
+                                    </Grid>
+                                    <Grid item xs={8}>
+                                        <AmortissementInput/>
+                                    </Grid>
                                 </Grid>
-                                <Grid item xs={4}>
-                                    <TmiSelect/>
-                                </Grid>
-                                <Grid item xs={5}>
-
-                                </Grid>
-                                <Grid item xs={3}>
-                                    <ChargesInput/>
-                                </Grid>
-                                <Grid item xs={5}>
-                                    <AmortissementInput/>
+                                <Grid container item spacing={2} xs={6}>
+                                    <Grid item xs={12}>
+                                        <TableauAmortissement/>
+                                    </Grid>
                                 </Grid>
                             </Grid>
                         </main>
