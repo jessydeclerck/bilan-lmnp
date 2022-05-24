@@ -11,4 +11,8 @@ const generateMarks = (steps: any, suffix = ''): sliderMark[] => {
     return result;
 }
 
-export {generateMarks};
+function round(value:number){
+    return Number(value.toFixed(2));
+}
+
+export {generateMarks, round};

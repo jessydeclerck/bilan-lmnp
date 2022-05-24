@@ -1,9 +1,9 @@
 import {LigneAmortissement} from "../services/EmpruntService";
 import {InputLabel, Paper} from "@mui/material";
 import {DataGrid} from "@mui/x-data-grid/DataGrid";
-import {GridColDef, GridValueGetterParams} from "@mui/x-data-grid";
+import {GridColDef} from "@mui/x-data-grid";
 
-interface TableauAmortissementProps{
+interface TableauAmortissementProps {
     tableauAmortissement: LigneAmortissement[];
 }
 
@@ -15,16 +15,22 @@ const inputLabelStyle = {
 }
 
 const columns: GridColDef[] = [
-    { field: 'mois', headerName: 'Mois', width: 50},
-    { field: 'capitalRestantDu', headerName: 'Capital restant dû', width:200},
-    { field: 'interets', headerName: 'Intérêts', width:100},
-    { field: 'capitalRembourse', headerName: 'Capital remboursé', width: 200},
+    {field: 'mois', headerName: 'Mois', width: 60, sortable: false},
+    {field: 'capitalRestantDu', headerName: 'Capital restant dû', width: 200, sortable: false},
+    {field: 'interets', headerName: 'Intérêts', width: 100, sortable: false},
+    {field: 'capitalRembourse', headerName: 'Capital remboursé', width: 200, sortable: false},
 ];
 
-function TableauAmortissement(props:TableauAmortissementProps):JSX.Element{
+function TableauAmortissement(props: TableauAmortissementProps): JSX.Element {
     const {tableauAmortissement} = props;
     const tableauAmortissementFixed = tableauAmortissement.map(row => {
-        return {id: row.id, mois: row.mois, capitalRestantDu: row.capitalRestantDu.toFixed(2), interets: row.interets.toFixed(2), capitalRembourse: row.capitalRembourse.toFixed(2) };
+        return {
+            id: row.id,
+            mois: row.mois,
+            capitalRestantDu: row.capitalRestantDu.toFixed(2),
+            interets: row.interets.toFixed(2),
+            capitalRembourse: row.capitalRembourse.toFixed(2)
+        };
     })
 
     return <Paper elevation={3} sx={{
@@ -41,6 +47,8 @@ function TableauAmortissement(props:TableauAmortissementProps):JSX.Element{
             pageSize={12}
             rowsPerPageOptions={[12]}
             disableSelectionOnClick
+            disableColumnFilter
+            disableColumnMenu
         />
     </Paper>;
 }

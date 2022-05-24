@@ -16,7 +16,12 @@ import AmortissementInput from "./inputs/AmortissementInput";
 import MapsHomeWorkIcon from '@mui/icons-material/MapsHomeWork';
 import TmiSelect from "./inputs/TmiSelect";
 import DureeEmprunt from "./displays/DureeEmprunt";
-import {genererTableauAmortissement, LigneAmortissement} from "./services/EmpruntService";
+import {
+    genererTableauAmortissement,
+    getCapitalRestantDu,
+    getInterets,
+    LigneAmortissement
+} from "./services/EmpruntService";
 import TableauAmortissement from "./displays/TableauAmortissement";
 
 
@@ -60,7 +65,10 @@ function App() {
     }
 
     useEffect(() => {
-        setTableauAmortissement(genererTableauAmortissement(montantEmprunt, tauxEmprunt, dureePret));
+        const tab = genererTableauAmortissement(montantEmprunt, tauxEmprunt, dureePret)
+        setTableauAmortissement(tab);
+        console.log('Interets année 1:', getInterets(tab, 1));
+        console.log('Capital restant du année 1:', getCapitalRestantDu(tab, 13));
     }, [tauxEmprunt, montantEmprunt, dureePret])
 
     return (
