@@ -4,6 +4,7 @@ function calculerMensualite(capital: number, tauxAnnuel: number, annees: number)
 }
 
 interface LigneAmortissement {
+    id:number;
     mois: number;
     capitalRestantDu: number;
     interets: number;
@@ -16,6 +17,7 @@ function genererTableauAmortissement(capital: number, taux: number, annees: numb
     const tauxMensuel = taux / 12 / 100;
 
     tableauAmortissement.push({
+        id: 1,
         mois: 1,
         capitalRestantDu: capital,
         interets: tauxMensuel * capital,
@@ -27,6 +29,7 @@ function genererTableauAmortissement(capital: number, taux: number, annees: numb
         const capitalRestantDu = moisPrecedent.capitalRestantDu - moisPrecedent.capitalRembourse;
         const interets = capitalRestantDu * tauxMensuel;
         tableauAmortissement.push({
+            id: idx+1,
             mois: idx + 1,
             capitalRestantDu,
             interets,

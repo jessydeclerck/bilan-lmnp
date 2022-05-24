@@ -119,7 +119,7 @@ function App() {
                                 </Grid>
                                 <Grid container item spacing={2} xs={6}>
                                     <Grid item xs={12}>
-                                        <TableauAmortissement/>
+                                        <TableauAmortissement tableauAmortissement={tableauAmortissement}/>
                                     </Grid>
                                 </Grid>
                             </Grid>
