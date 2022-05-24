@@ -16,9 +16,9 @@ const inputLabelStyle = {
 
 const columns: GridColDef[] = [
     {field: 'mois', headerName: 'Mois', width: 60, sortable: false},
-    {field: 'capitalRestantDu', headerName: 'Capital restant dû', width: 200, sortable: false},
+    {field: 'capitalRestantDu', headerName: 'Capital restant dû', width: 180, sortable: false},
     {field: 'interets', headerName: 'Intérêts', width: 100, sortable: false},
-    {field: 'capitalRembourse', headerName: 'Capital remboursé', width: 200, sortable: false},
+    {field: 'capitalRembourse', headerName: 'Capital remboursé', width: 180, sortable: false},
 ];
 
 function TableauAmortissement(props: TableauAmortissementProps): JSX.Element {

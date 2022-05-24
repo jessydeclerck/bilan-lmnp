@@ -1,18 +1,18 @@
 import FormControl from "@mui/material/FormControl";
 import BilanParameterInput from "./BilanParameterInput";
 import {Box, InputLabel, MenuItem, Select, SelectChangeEvent} from "@mui/material";
-import {useState} from "react";
 
-function TmiSelect(): JSX.Element {
-    const [tmi, setTmi] = useState(30);
+interface TmiSelectProps {
+    tmi: number;
+    handleTmiChange: (event: SelectChangeEvent) => void;
+}
 
-    const handleTmiChange = (event: SelectChangeEvent) => {
-        setTmi(Number.parseInt(event.target.value));
-    }
+function TmiSelect(props:TmiSelectProps): JSX.Element {
+    const {tmi, handleTmiChange} = props;
 
     return <BilanParameterInput label={"Tranche marginale d'imposition"}>
         <Box sx={{display: 'flex', justifyContent: 'center'}}>
-            <FormControl sx={{width:'80%'}}>
+            <FormControl sx={{width: '80%'}}>
                 <InputLabel id="select-tmi">TMI</InputLabel>
                 <Select
                     labelId="select-tmi"

@@ -1,23 +1,21 @@
 import BilanParameterInput from "./BilanParameterInput";
 import {Box, FormControl, InputAdornment, InputLabel, OutlinedInput} from "@mui/material";
-import {ChangeEvent, useState} from "react";
+import {ChangeEvent, ChangeEventHandler, useState} from "react";
 
 const label = "Loyer"
 
-function LoyerInput(): JSX.Element {
-    const [loyerHC, setLoyerHC] = useState(0);
-    const [charges, setCharges] = useState(0);
+interface LoyerInputProps {
+    loyerHC: number;
+    chargesLoyer: number;
+    handleLoyerHCChange: ChangeEventHandler;
+    handleChargesLoyerChange: ChangeEventHandler;
+}
 
-    const handleLoyerHCChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setLoyerHC(Number(event.target.value));
-    }
-
-    const handleChargesChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setCharges(Number(event.target.value));
-    }
+function LoyerInput(props:LoyerInputProps): JSX.Element {
+    const {loyerHC, chargesLoyer, handleLoyerHCChange, handleChargesLoyerChange} = props;
 
     return (
-        <BilanParameterInput label={(loyerHC + charges > 0) ? label + ` (${loyerHC + charges}€)`:label }>
+        <BilanParameterInput label={(loyerHC + chargesLoyer > 0) ? label + ` (${loyerHC + chargesLoyer}€)`:label }>
             <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-evenly', height: '60%'}}>
                 <FormControl sx={{width: '45%'}}>
                     <InputLabel htmlFor={"outlined-adornment-loyer-hc"}>Loyer HC</InputLabel>
@@ -41,8 +39,8 @@ function LoyerInput(): JSX.Element {
                     <OutlinedInput
                         id={"outlined-adornment-charges"}
                         label={"Charges"}
-                        value={charges}
-                        onChange={handleChargesChange}
+                        value={chargesLoyer}
+                        onChange={handleChargesLoyerChange}
                         size="small"
                         inputProps={{
                             step: 10,

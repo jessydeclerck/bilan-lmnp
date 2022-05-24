@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
 import './App.css';
-import {AppBar, Container, CssBaseline, Grid, ThemeOptions} from "@mui/material";
+import {AppBar, Container, CssBaseline, Grid, SelectChangeEvent, ThemeOptions} from "@mui/material";
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {amber, blue, grey} from "@mui/material/colors";
 import TauxEmpruntInput from "./inputs/TauxEmpruntInput";
@@ -16,13 +16,9 @@ import AmortissementInput from "./inputs/AmortissementInput";
 import MapsHomeWorkIcon from '@mui/icons-material/MapsHomeWork';
 import TmiSelect from "./inputs/TmiSelect";
 import DureeEmprunt from "./displays/DureeEmprunt";
-import {
-    genererTableauAmortissement,
-    getCapitalRestantDu,
-    getInterets,
-    LigneAmortissement
-} from "./services/EmpruntService";
+import {calculerMensualite, genererTableauAmortissement, LigneAmortissement} from "./services/EmpruntService";
 import TableauAmortissement from "./displays/TableauAmortissement";
+import BilanPrevisionnel from "./displays/BilanPrevisionnel";
 
 
 const themeOptions: ThemeOptions = {
@@ -47,6 +43,24 @@ function App() {
     const [montantEmprunt, setMontantEmprunt] = useState(0);
     const [dureePret, setDureePret] = useState(20);
     const [tableauAmortissement, setTableauAmortissement] = useState<LigneAmortissement[]>([])
+    const [loyerHC, setLoyerHC] = useState(0);
+    const [chargesLoyer, setChargesLoyer] = useState(0);
+    const [mensualite, setMensualite] = useState(0);
+    const [tmi, setTmi] = useState(30);
+    const [charges, setCharges] = useState();
+
+    const handleTmiChange = (event: SelectChangeEvent) => {
+        setTmi(Number.parseInt(event.target.value));
+    }
+
+    const handleLoyerHCChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setLoyerHC(Number(event.target.value));
+    }
+
+    const handleChargesLoyerChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setChargesLoyer(Number(event.target.value));
+    }
+
 
     const handleDureePretChange = (event: Event, newValue: number | number[]) => {
         setDureePret(Number(newValue))
@@ -65,10 +79,8 @@ function App() {
     }
 
     useEffect(() => {
-        const tab = genererTableauAmortissement(montantEmprunt, tauxEmprunt, dureePret)
-        setTableauAmortissement(tab);
-        console.log('Interets année 1:', getInterets(tab, 1));
-        console.log('Capital restant du année 1:', getCapitalRestantDu(tab, 13));
+        setTableauAmortissement(genererTableauAmortissement(montantEmprunt, tauxEmprunt, dureePret));
+        setMensualite(Number.parseFloat(calculerMensualite(montantEmprunt, tauxEmprunt, dureePret)));
     }, [tauxEmprunt, montantEmprunt, dureePret])
 
     return (
@@ -97,7 +109,9 @@ function App() {
                                                   handleDureePretChange={handleDureePretChange}/>
                                 </Grid>
                                 <Grid item xs={3}>
-                                    <LoyerInput/>
+                                    <LoyerInput loyerHC={loyerHC} chargesLoyer={chargesLoyer}
+                                                handleLoyerHCChange={handleLoyerHCChange}
+                                                handleChargesLoyerChange={handleChargesLoyerChange}/>
                                 </Grid>
                                 <Grid item xs={2}>
                                     <FraisAgenceInput/>
@@ -116,7 +130,7 @@ function App() {
                                         <TravauxInput/>
                                     </Grid>
                                     <Grid item xs={8}>
-                                        <TmiSelect/>
+                                        <TmiSelect tmi={tmi} handleTmiChange={handleTmiChange}/>
                                     </Grid>
                                     <Grid item xs={4}>
                                         <ChargesInput/>
@@ -129,6 +143,12 @@ function App() {
                                     <Grid item xs={12}>
                                         <TableauAmortissement tableauAmortissement={tableauAmortissement}/>
                                     </Grid>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <BilanPrevisionnel loyerCC={loyerHC + chargesLoyer}
+                                                       tableauAmortissement={tableauAmortissement} charges={charges}
+                                                       tmi={tmi}
+                                                       mensualite={mensualite}/>
                                 </Grid>
                             </Grid>
                         </main>
