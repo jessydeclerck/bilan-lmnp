@@ -1,13 +1,14 @@
 import GenericAmountInput from "./GenericAmountInput";
 import ChairIcon from '@mui/icons-material/Chair';
-import {ChangeEvent, useState} from "react";
+import {ChangeEventHandler} from "react";
 
-function MeublesInput(): JSX.Element {
-    const [montantMeuble, setMontantMeuble] = useState(0);
+interface MeublesInputProps {
+    montantMeuble:number;
+    handleMontantMeubleChange:ChangeEventHandler;
+}
 
-    const handleMontantMeubleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setMontantMeuble(Number(event.target.value));
-    }
+function MeublesInput(props:MeublesInputProps): JSX.Element {
+    const {montantMeuble, handleMontantMeubleChange} = props;
 
     return <GenericAmountInput label={"Meubles"} step={100} icon={<ChairIcon/>} value={montantMeuble}
                                handleChangeFunction={handleMontantMeubleChange}/>

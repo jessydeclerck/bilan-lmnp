@@ -27,28 +27,31 @@ const notaireMarks = generateMarks(notaireSliderSteps);
 
 const typographyStyle = {fontSize: '13px', color: 'rgba(0, 0, 0, 0.6)'};
 
-function AmortissementInput(): JSX.Element {
-    const [dureeAmortissementTravaux, setDureeAmortissementTravaux] = useState(6);
-    const [dureeAmortissementMeubles, setDureeAmortissementMeubles] = useState(6);
-    const [dureeAmortissementAgence, setDureeAmortissementAgence] = useState(6);
-    const [dureeAmortissementBien, setDureeAmortissementBien] = useState(25);
-    const [dureeAmortissementNotaire, setDureeAmortissementNotaire] = useState(20);
+interface AmortissementInputProps {
+    dureeAmortissementTravaux:number;
+    dureeAmortissementMeubles:number;
+    dureeAmortissementAgence:number;
+    dureeAmortissementBien:number;
+    dureeAmortissementNotaire:number;
+    handleDureeAmortissementTravauxChange:(event: Event, newValue: number | number[]) => void;
+    handleDureeAmortissementMeublesChange:(event: Event, newValue: number | number[]) => void;
+    handleDureeAmortissementAgenceChange:(event: Event, newValue: number | number[]) => void;
+    handleDureeAmortissementBienChange:(event: Event, newValue: number | number[]) => void;
+    handleDureeAmortissementNotaireChange:(event: Event, newValue: number | number[]) => void;
+}
 
-    const handleDureeAmortissementTravauxChange = (event: Event, newValue: number | number[]) => {
-        setDureeAmortissementTravaux(Number(newValue))
-    }
-    const handleDureeAmortissementMeublesChange = (event: Event, newValue: number | number[]) => {
-        setDureeAmortissementMeubles(Number(newValue))
-    }
-    const handleDureeAmortissementAgenceChange = (event: Event, newValue: number | number[]) => {
-        setDureeAmortissementAgence(Number(newValue))
-    }
-    const handleDureeAmortissementBienChange = (event: Event, newValue: number | number[]) => {
-        setDureeAmortissementBien(Number(newValue))
-    }
-    const handleDureeAmortissementNotaireChange = (event: Event, newValue: number | number[]) => {
-        setDureeAmortissementNotaire(Number(newValue))
-    }
+function AmortissementInput({
+                                dureeAmortissementAgence,
+                                dureeAmortissementBien,
+                                dureeAmortissementMeubles,
+                                dureeAmortissementNotaire,
+                                dureeAmortissementTravaux,
+                                handleDureeAmortissementAgenceChange,
+                                handleDureeAmortissementBienChange,
+                                handleDureeAmortissementMeublesChange,
+                                handleDureeAmortissementNotaireChange,
+                                handleDureeAmortissementTravauxChange
+                            }: AmortissementInputProps): JSX.Element {
 
     return <BilanParameterInput label={"Amortissements"} height={'415px'}>
         <Box sx={{display: 'flex', flexDirection: 'column', width: '80%', alignSelf: 'center'}}>

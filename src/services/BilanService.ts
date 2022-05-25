@@ -45,7 +45,7 @@ function getCharges(charges: Charges, interets: number): number {
         coproProprietaire = 0,
         coproLocataire = 0
     } = charges;
-    return taxeFonciere + assurancePNO + garantieLoyerImpaye + coproProprietaire + coproLocataire + interets;
+    return round(taxeFonciere + assurancePNO + garantieLoyerImpaye + coproProprietaire + coproLocataire + interets);
 }
 
 function getAmortissements(charges: Charges, annee: number): number {
@@ -66,7 +66,7 @@ function getBaseImposable(recettes: number, amortissements: number, totalCharges
     if (recettes - amortissements - totalCharges < 0) {
         return 0;
     }
-    return recettes - amortissements - totalCharges;
+    return round(recettes - amortissements - totalCharges);
 }
 
 function genererBilanPrevisionnel(loyerCC: number, tableauAmortissement: LigneAmortissement[], charges: Charges, tmi: number, mensualite: number): LigneBilan[] {
@@ -74,16 +74,16 @@ function genererBilanPrevisionnel(loyerCC: number, tableauAmortissement: LigneAm
     const recettes = round(loyerCC * 12);
     const annuite = round(mensualite * 12);
 
-    for (let idx = 1; idx < 30; idx++) {
+    for (let idx = 1; idx <= 30; idx++) {
         const interets = getInterets(tableauAmortissement, idx);
         const capitalRestantDu = getCapitalRestantDu(tableauAmortissement, 12 * idx + 1);
         const amortissements = getAmortissements(charges, 1);
         const chargesNonAmortissables = getCharges(charges, interets);
-        const cumulDeficitBenef = recettes - amortissements - chargesNonAmortissables;
+        const cumulDeficitBenef = round(recettes - amortissements - chargesNonAmortissables);
         const baseImposable = getBaseImposable(recettes, amortissements, chargesNonAmortissables);
         const prelevementSociaux = round(baseImposable * 17.2 / 100);
         const impotRevenu = round((baseImposable - prelevementSociaux) * tmi / 100);
-        const cashFlow = recettes - annuite - chargesNonAmortissables - prelevementSociaux - impotRevenu;
+        const cashFlow = round(recettes - annuite - chargesNonAmortissables - prelevementSociaux - impotRevenu);
         const rentabiliteNette = 0; //TODO
 
         result.push({

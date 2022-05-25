@@ -1,15 +1,16 @@
-import {ChangeEvent, useState} from "react";
+import {ChangeEvent, ChangeEventHandler, useState} from "react";
 import HandymanIcon from '@mui/icons-material/Handyman';
 import GenericAmountInput from "./GenericAmountInput";
 
 const label = "Travaux";
 
-function TravauxInput(): JSX.Element {
-    const [montantTravaux, setMontantTravaux] = useState(0);
+interface TravauxInputProps {
+    montantTravaux:number;
+    handleMontantTravauxChange:ChangeEventHandler;
+}
 
-    const handleMontantTravauxChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setMontantTravaux(Number(event.target.value));
-    }
+function TravauxInput(props:TravauxInputProps): JSX.Element {
+    const {montantTravaux, handleMontantTravauxChange} = props;
 
     return <GenericAmountInput label={label} icon={<HandymanIcon/>} value={montantTravaux} step={100}
                                handleChangeFunction={handleMontantTravauxChange}/>;

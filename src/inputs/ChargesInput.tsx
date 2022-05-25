@@ -1,34 +1,34 @@
 import BilanParameterInput from "./BilanParameterInput";
 import {Box, InputAdornment, InputLabel, OutlinedInput} from "@mui/material";
-import {ChangeEvent, useState} from "react";
+import {ChangeEventHandler} from "react";
 import FormControl from "@mui/material/FormControl";
 
-function ChargesInput(): JSX.Element {
-    const [taxeFonciere, setTaxeFonciere] = useState(0);
-    const [assurancePNO, setAssurancePNO] = useState(0);
-    const [garantieLoyerImpaye, setGarantieLoyerImpaye] = useState(0);
-    const [chargesCoproProprietaire, setChargesCoproProprietaire] = useState(0);
-    const [chargesCoproLocataire, setChargesCoproLocataire] = useState(0);
+interface ChargesInputProps {
+    taxeFonciere: number;
+    assurancePNO: number;
+    garantieLoyerImpaye: number;
+    chargesCoproProprietaire: number;
+    chargesCoproLocataire: number;
+    handleTaxeFonciereChange: ChangeEventHandler;
+    handleAssurancePNOChange: ChangeEventHandler;
+    handleGarantieLoyerImpayeChange: ChangeEventHandler;
+    handleChargeCoproProprietaire: ChangeEventHandler;
+    handleChargesCoproLocataire: ChangeEventHandler;
+}
 
-    const handleTaxeFonciereChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setTaxeFonciere(Number(event.target.value));
-    }
-
-    const handleAssurancePNOChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setAssurancePNO(Number(event.target.value));
-    }
-
-    const handleGarantieLoyerImpayeChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setGarantieLoyerImpaye(Number(event.target.value));
-    }
-
-    const handleChargeCoproProprietaire = (event: ChangeEvent<HTMLInputElement>) => {
-        setChargesCoproProprietaire(Number(event.target.value));
-    }
-
-    const handleChargesCoproLocataire = (event: ChangeEvent<HTMLInputElement>) => {
-        setChargesCoproLocataire(Number(event.target.value));
-    }
+function ChargesInput(props: ChargesInputProps): JSX.Element {
+    const {
+        taxeFonciere,
+        assurancePNO,
+        garantieLoyerImpaye,
+        chargesCoproProprietaire,
+        chargesCoproLocataire,
+        handleTaxeFonciereChange,
+        handleAssurancePNOChange,
+        handleGarantieLoyerImpayeChange,
+        handleChargesCoproLocataire,
+        handleChargeCoproProprietaire
+    } = props;
 
     return <BilanParameterInput label={"Charges"} height={'415px'}>
         <Box sx={{

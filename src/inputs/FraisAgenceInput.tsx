@@ -1,15 +1,16 @@
-import {ChangeEvent, useState} from "react";
+import {ChangeEvent, ChangeEventHandler, useState} from "react";
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import GenericAmountInput from "./GenericAmountInput";
 
 const label = "Frais d'agence";
 
-function FraisAgenceInput(): JSX.Element {
-    const [fraisAgence, setFraisAgence] = useState(0);
+interface FraisAgenceProps {
+    fraisAgence:number;
+    handleFraisAgenceChange:ChangeEventHandler;
+}
 
-    const handleFraisAgenceChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setFraisAgence(Number(event.target.value));
-    }
+function FraisAgenceInput(props:FraisAgenceProps): JSX.Element {
+    const {fraisAgence, handleFraisAgenceChange} = props;
 
     return <GenericAmountInput label={label} icon={<PersonSearchIcon/>} value={fraisAgence} step={100}
                                handleChangeFunction={handleFraisAgenceChange}/>

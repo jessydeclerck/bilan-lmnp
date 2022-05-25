@@ -43,6 +43,9 @@ function genererTableauAmortissement(capital: number, taux: number, annees: numb
 }
 
 function getCapitalRestantDu(tableauAmortissement: LigneAmortissement[], mois: number): number {
+    if(mois > tableauAmortissement.length) {
+        return 0;
+    }
     return tableauAmortissement[mois - 1].capitalRestantDu;
 }
 

@@ -1,13 +1,14 @@
-import {ChangeEvent, useState} from "react";
+import {ChangeEvent, ChangeEventHandler, useState} from "react";
 import GenericAmountInput from "./GenericAmountInput";
 import ApartmentIcon from '@mui/icons-material/Apartment';
 
-function ValeurAppartementInput(): JSX.Element {
-    const [valeurBien, setValeurBien] = useState(0);
+interface ValeurAppartementProps {
+    valeurBien:number;
+    handleValeurBienChange:ChangeEventHandler;
+}
 
-    const handleValeurBienChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setValeurBien(Number(event.target.value));
-    }
+function ValeurAppartementInput(props:ValeurAppartementProps): JSX.Element {
+    const {valeurBien, handleValeurBienChange} = props;
 
     return <GenericAmountInput label={"Valeur bien nu"} icon={<ApartmentIcon/>} value={valeurBien} step={500}
                                handleChangeFunction={handleValeurBienChange}/>;
