@@ -27,6 +27,7 @@ const dureeMarks = generateMarks(dureeEmpruntSteps, ' ans');
 
 function DureeEmprunt(props: MensualitesProps): JSX.Element {
     const {taux, capital, dureePret, handleDureePretChange} = props;
+    const [valueDisplayed, setValueDisplayed] = useState(dureePret);
 
     return <Paper elevation={3} sx={{
         padding: '5px 10px',
@@ -39,8 +40,11 @@ function DureeEmprunt(props: MensualitesProps): JSX.Element {
         <Box sx={{display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', height: '60%', fontWeight: 'bold'}}>
             <Slider
                 aria-label={"Durée emprunt"}
-                value={dureePret}
-                onChange={handleDureePretChange}
+                value={valueDisplayed}
+                onChange={(event, newValue) => {
+                    setValueDisplayed(Number(newValue))
+                    handleDureePretChange(event, newValue);
+                }}
                 valueLabelDisplay={"auto"}
                 step={1}
                 min={10}

@@ -52,6 +52,11 @@ function AmortissementInput({
                                 handleDureeAmortissementNotaireChange,
                                 handleDureeAmortissementTravauxChange
                             }: AmortissementInputProps): JSX.Element {
+    const [agenceValueDisplayed, setAgenceValueDisplayed] = useState(dureeAmortissementAgence);
+    const [bienValueDisplayed, setBienValueDisplayed] = useState(dureeAmortissementBien);
+    const [meublesValueDisplayed, setMeublesValueDisplayed] = useState(dureeAmortissementMeubles);
+    const [notaireValueDisplayed, setNotaireValueDisplayed] = useState(dureeAmortissementNotaire);
+    const [travauxValueDisplayed, setTravauxValueDisplayed] = useState(dureeAmortissementTravaux);
 
     return <BilanParameterInput label={"Amortissements"} height={'415px'}>
         <Box sx={{display: 'flex', flexDirection: 'column', width: '80%', alignSelf: 'center'}}>
@@ -59,8 +64,11 @@ function AmortissementInput({
                 (années)</Typography>
             <Slider
                 aria-label={"Amortissement travaux"}
-                value={dureeAmortissementTravaux}
-                onChange={handleDureeAmortissementTravauxChange}
+                value={travauxValueDisplayed}
+                onChange={(event, newValue) => {
+                    setTravauxValueDisplayed(Number(newValue));
+                    handleDureeAmortissementTravauxChange(event, newValue);
+                }}
                 valueLabelDisplay={"auto"}
                 step={defaultSliderSteps.step}
                 min={defaultSliderSteps.min}
@@ -72,8 +80,11 @@ function AmortissementInput({
                 (années)</Typography>
             <Slider
                 aria-label={"Amortissement meubles"}
-                value={dureeAmortissementMeubles}
-                onChange={handleDureeAmortissementMeublesChange}
+                value={meublesValueDisplayed}
+                onChange={(event, newValue) => {
+                    setMeublesValueDisplayed(Number(newValue));
+                    handleDureeAmortissementMeublesChange(event,newValue);
+                }}
                 valueLabelDisplay={"auto"}
                 step={defaultSliderSteps.step}
                 min={defaultSliderSteps.min}
@@ -85,8 +96,11 @@ function AmortissementInput({
                 (années)</Typography>
             <Slider
                 aria-label={"Amortissement frais d'agence"}
-                value={dureeAmortissementAgence}
-                onChange={handleDureeAmortissementAgenceChange}
+                value={agenceValueDisplayed}
+                onChange={(event, newValue) => {
+                    setAgenceValueDisplayed(Number(newValue));
+                    handleDureeAmortissementAgenceChange(event,newValue);
+                }}
                 valueLabelDisplay={"auto"}
                 step={defaultSliderSteps.step}
                 min={defaultSliderSteps.min}
@@ -98,8 +112,11 @@ function AmortissementInput({
                 (années)</Typography>
             <Slider
                 aria-label={"Amortissement du bien"}
-                value={dureeAmortissementBien}
-                onChange={handleDureeAmortissementBienChange}
+                value={bienValueDisplayed}
+                onChange={(event, newValue) => {
+                    setBienValueDisplayed(Number(newValue));
+                    handleDureeAmortissementBienChange(event,newValue);
+                }}
                 valueLabelDisplay={"auto"}
                 step={1}
                 min={bienSliderSteps.min}
@@ -111,8 +128,11 @@ function AmortissementInput({
                 (années)</Typography>
             <Slider
                 aria-label={"Amortissement frais de notaire"}
-                value={dureeAmortissementNotaire}
-                onChange={handleDureeAmortissementNotaireChange}
+                value={notaireValueDisplayed}
+                onChange={(event, newValue) => {
+                    setNotaireValueDisplayed(Number(newValue));
+                    handleDureeAmortissementNotaireChange(event,newValue);
+                }}
                 valueLabelDisplay={"auto"}
                 step={1}
                 min={notaireSliderSteps.min}

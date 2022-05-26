@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, {ChangeEvent, useCallback, useEffect, useState} from 'react';
 import './App.css';
 import {AppBar, Container, CssBaseline, Grid, SelectChangeEvent, ThemeOptions} from "@mui/material";
 import {createTheme, ThemeProvider} from '@mui/material/styles';
@@ -20,6 +20,7 @@ import {calculerMensualite, genererTableauAmortissement, LigneAmortissement} fro
 import TableauAmortissement from "./displays/TableauAmortissement";
 import BilanPrevisionnel from "./displays/BilanPrevisionnel";
 import {Charges} from "./services/BilanService";
+import {debounce} from "lodash";
 
 
 const themeOptions: ThemeOptions = {
@@ -78,8 +79,18 @@ function App() {
     const [dureeAmortissementBien, setDureeAmortissementBien] = useState(25);
     const [dureeAmortissementNotaire, setDureeAmortissementNotaire] = useState(20);
 
+    const useDebounced = <T extends (...args: any) => any>(func:T, delay:number) => {
+        return useCallback(debounce(func, delay), []);
+    }
+
+    const updateCharges = (charges:Charges) => {
+        setCharges(charges);
+    }
+
+    const debouncedUpdateCharges = useDebounced(updateCharges, 200);
+
     useEffect(() => {
-        setCharges({
+        const newValue = {
             meubles: {montant: montantMeuble, dureeAmortissement: dureeAmortissementMeubles},
             travaux: {montant: montantTravaux, dureeAmortissement: dureeAmortissementTravaux},
             fraisAgence: {montant: fraisAgence, dureeAmortissement: dureeAmortissementAgence},
@@ -90,7 +101,8 @@ function App() {
             garantieLoyerImpaye,
             coproProprietaire: chargesCoproProprietaire,
             coproLocataire: chargesCoproLocataire
-        })
+        }
+        debouncedUpdateCharges(newValue)
     }, [fraisAgence, fraisNotaire, valeurBien, montantMeuble, montantTravaux, taxeFonciere, assurancePNO, garantieLoyerImpaye, chargesCoproProprietaire, chargesCoproLocataire, dureeAmortissementTravaux, dureeAmortissementMeubles, dureeAmortissementAgence, dureeAmortissementBien, dureeAmortissementNotaire]);
 
     const handleDureeAmortissementTravauxChange = (event: Event, newValue: number | number[]) => {
@@ -161,9 +173,12 @@ function App() {
         setChargesLoyer(Number(event.target.value));
     }
 
+
     const handleDureePretChange = (event: Event, newValue: number | number[]) => {
         setDureePret(Number(newValue))
     }
+
+    const debouncedHandleDureePretChange = useDebounced(handleDureePretChange, 200);
 
     const handleTauxSliderChange = (event: Event, newValue: number | number[]) => {
         setTauxEmprunt(Number(newValue))
@@ -177,9 +192,15 @@ function App() {
         setMontantEmprunt(Number(event.target.value));
     }
 
-    useEffect(() => {
+    const updateDisplays = (tauxEmprunt:number, montantEmprunt:number, dureePret:number) => {
         setTableauAmortissement(genererTableauAmortissement(montantEmprunt, tauxEmprunt, dureePret));
         setMensualite(Number.parseFloat(calculerMensualite(montantEmprunt, tauxEmprunt, dureePret)));
+    }
+
+    const debouncedUpdateDisplays = useDebounced(updateDisplays, 200);
+
+    useEffect(() => {
+        debouncedUpdateDisplays(tauxEmprunt, montantEmprunt, dureePret);
     }, [tauxEmprunt, montantEmprunt, dureePret])
 
     return (
@@ -197,7 +218,7 @@ function App() {
                                 <Grid item xs={5}>
                                     <TauxEmpruntInput value={tauxEmprunt}
                                                       handleInputChangeFunction={handleTauxInputChange}
-                                                      handleSliderChangeFunction={handleTauxSliderChange}/>
+                                                      handleSliderChangeFunction={useDebounced(handleTauxSliderChange, 200)}/>
                                 </Grid>
                                 <Grid item xs={2}>
                                     <MontantEmpruntInput value={montantEmprunt}
@@ -205,7 +226,7 @@ function App() {
                                 </Grid>
                                 <Grid item xs={5}>
                                     <DureeEmprunt taux={tauxEmprunt} capital={montantEmprunt} dureePret={dureePret}
-                                                  handleDureePretChange={handleDureePretChange}/>
+                                                  handleDureePretChange={debouncedHandleDureePretChange}/>
                                 </Grid>
                                 <Grid item xs={3}>
                                     <LoyerInput loyerHC={loyerHC} chargesLoyer={chargesLoyer}
@@ -255,11 +276,11 @@ function App() {
                                                             dureeAmortissementAgence={dureeAmortissementAgence}
                                                             dureeAmortissementBien={dureeAmortissementBien}
                                                             dureeAmortissementNotaire={dureeAmortissementNotaire}
-                                                            handleDureeAmortissementAgenceChange={handleDureeAmortissementAgenceChange}
-                                                            handleDureeAmortissementBienChange={handleDureeAmortissementBienChange}
-                                                            handleDureeAmortissementMeublesChange={handleDureeAmortissementMeublesChange}
-                                                            handleDureeAmortissementNotaireChange={handleDureeAmortissementNotaireChange}
-                                                            handleDureeAmortissementTravauxChange={handleDureeAmortissementTravauxChange}
+                                                            handleDureeAmortissementAgenceChange={useDebounced(handleDureeAmortissementAgenceChange,200)}
+                                                            handleDureeAmortissementBienChange={useDebounced(handleDureeAmortissementBienChange, 200)}
+                                                            handleDureeAmortissementMeublesChange={useDebounced(handleDureeAmortissementMeublesChange,200)}
+                                                            handleDureeAmortissementNotaireChange={useDebounced(handleDureeAmortissementNotaireChange,200)}
+                                                            handleDureeAmortissementTravauxChange={useDebounced(handleDureeAmortissementTravauxChange,200)}
                                         />
                                     </Grid>
                                 </Grid>

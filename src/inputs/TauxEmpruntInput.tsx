@@ -58,6 +58,7 @@ interface TauxEmpruntProps {
 
 function TauxEmpruntInput(props:TauxEmpruntProps): JSX.Element {
     const {value, handleSliderChangeFunction, handleInputChangeFunction} = props;
+    const [valueDisplayed, setValueDisplayed] = useState(value);
 
     return (
         <BilanParameterInput label={label}>
@@ -68,8 +69,11 @@ function TauxEmpruntInput(props:TauxEmpruntProps): JSX.Element {
             <Grid item xs={8}>
                 <Slider
                     aria-label={label}
-                    value={value}
-                    onChange={handleSliderChangeFunction}
+                    value={valueDisplayed}
+                    onChange={(event, newValue) => {
+                        setValueDisplayed(Number(newValue));
+                        handleSliderChangeFunction(event, newValue);
+                    }}
                     getAriaValueText={valuetext}
                     valueLabelDisplay={"auto"}
                     step={stepsValue.step}
@@ -84,8 +88,11 @@ function TauxEmpruntInput(props:TauxEmpruntProps): JSX.Element {
             </Grid>
             <Grid item>
                 <Input
-                    value={value}
-                    onChange={handleInputChangeFunction}
+                    value={valueDisplayed}
+                    onChange={(event) => {
+                        setValueDisplayed(Number(event.target.value));
+                        handleInputChangeFunction(event);
+                    }}
                     size="small"
                     inputProps={{
                         step: stepsValue.step,
