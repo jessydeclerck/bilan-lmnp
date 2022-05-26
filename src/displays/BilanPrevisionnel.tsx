@@ -21,15 +21,15 @@ interface BilanPrevisionnelProps {
 
 const columns: GridColDef[] = [
     {field: 'annee', headerName: 'Année', width: 65, sortable: false},
-    {field: 'recettes', headerName: 'Recettes', width: 80, sortable: false},
-    {field: 'capitalRestantDu', headerName: 'Capital restant dû', width: 100, sortable: false},
-    {field: 'annuite', headerName: 'Annuité', width: 75, sortable: false},
-    {field: 'interets', headerName: 'Intérêts', width: 75, sortable: false},
+    {field: 'recettes', headerName: 'Recettes', width: 85, sortable: false},
+    {field: 'capitalRestantDu', headerName: 'Capital restant dû', width: 110, sortable: false},
+    {field: 'annuite', headerName: 'Annuité', width: 80, sortable: false},
+    {field: 'interets', headerName: 'Intérêts', width: 80, sortable: false},
     {field: 'amortissements', headerName: 'Amortissements', width: 130, sortable: false},
     {field: 'charges', headerName: 'Charges', width: 85, sortable: false},
-    {field: 'cumulDeficitBenef', headerName: 'Cumul déficit/benef', width: 105, sortable: false},
-    {field: 'baseImposable', headerName: 'Base imposable', width: 90, sortable: false},
-    {field: 'impotRevenu', headerName: 'Impôt revenu', width: 70, sortable: false},
+    {field: 'cumulDeficitBenef', headerName: 'Cumul déficit/benef', width: 110, sortable: false},
+    {field: 'baseImposable', headerName: 'Base imposable', width: 100, sortable: false},
+    {field: 'impotRevenu', headerName: 'Impôt revenu', width: 75, sortable: false},
     {field: 'prelevementSociaux', headerName: 'Prélévement sociaux', width: 100, sortable: false},
     {field: 'cashFlow', headerName: 'Cash flow', width: 90, sortable: false},
 ];

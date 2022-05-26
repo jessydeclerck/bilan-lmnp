@@ -63,28 +63,27 @@ function getAmortissement(charge: ChargeAmortissable, annee: number): number {
     return round(charge.montant / charge.dureeAmortissement);
 }
 
-function getBaseImposable(recettes: number, amortissements: number, totalCharges: number, interets:number) {
-    if (recettes - amortissements - totalCharges - interets < 0) {
-        return 0;
-    }
-    return round(recettes - amortissements - totalCharges - interets);
-}
 
 function genererBilanPrevisionnel(loyerCC: number, tableauAmortissement: LigneAmortissement[], charges: Charges, tmi: number, mensualite: number): LigneBilan[] {
     const result = [];
     const recettes = round(loyerCC * 12);
-    const annuite = round(mensualite * 12);
 
     for (let annee = 1; annee <= 30; annee++) {
         const interets = getInterets(tableauAmortissement, annee);
         const capitalRestantDu = getCapitalRestantDu(tableauAmortissement, 12 * annee + 1);
+        const annuite = capitalRestantDu > 0 ? round(mensualite * 12) : 0;
         const amortissements = getAmortissements(charges, annee);
         const chargesNonAmortissables = getCharges(charges);
         let cumulDeficitBenef = round(recettes - amortissements - chargesNonAmortissables - interets);
-        if(annee > 1) {
-            cumulDeficitBenef += round(result.find(ligneBilan => ligneBilan.annee === annee - 1 && ligneBilan.cumulDeficitBenef < 0)?.cumulDeficitBenef ?? 0);
+        let baseImposable;
+        const cumulDeficitBenefLastYear = round(result.find(ligneBilan => ligneBilan.annee === annee - 1 && ligneBilan.cumulDeficitBenef < 0)?.cumulDeficitBenef ?? 0);
+        cumulDeficitBenef += cumulDeficitBenefLastYear;
+        if(cumulDeficitBenef < 0) {
+            baseImposable = 0;
+        } else {
+            baseImposable = cumulDeficitBenef;
+            cumulDeficitBenef = round(recettes - amortissements - chargesNonAmortissables - interets);
         }
-        const baseImposable = getBaseImposable(recettes, amortissements, chargesNonAmortissables, interets); //TODO handle cumulDeficitBenef
         const prelevementSociaux = round(baseImposable * 17.2 / 100);
         const impotRevenu = round((baseImposable - prelevementSociaux) * tmi / 100);
         const cashFlow = round(recettes - annuite - chargesNonAmortissables - prelevementSociaux - impotRevenu);
