@@ -21,6 +21,7 @@ import TableauAmortissement from "./displays/TableauAmortissement";
 import BilanPrevisionnel from "./displays/BilanPrevisionnel";
 import {Charges} from "./services/BilanService";
 import {debounce} from "lodash";
+import {useLocalStorage} from "./hooks/useLocalStorage";
 
 
 const themeOptions: ThemeOptions = {
@@ -54,30 +55,30 @@ const defaultCharges: Charges = {
 };
 
 function App() {
-    const [tauxEmprunt, setTauxEmprunt] = useState(1.5);
-    const [montantEmprunt, setMontantEmprunt] = useState(0);
-    const [dureePret, setDureePret] = useState(20);
-    const [tableauAmortissement, setTableauAmortissement] = useState<LigneAmortissement[]>([])
-    const [loyerHC, setLoyerHC] = useState(0);
-    const [chargesLoyer, setChargesLoyer] = useState(0);
-    const [mensualite, setMensualite] = useState(0);
-    const [tmi, setTmi] = useState(30);
-    const [charges, setCharges] = useState(defaultCharges);
-    const [fraisAgence, setFraisAgence] = useState(0);
-    const [fraisNotaire, setFraisNotaire] = useState(0);
-    const [valeurBien, setValeurBien] = useState(0);
-    const [montantMeuble, setMontantMeuble] = useState(0);
-    const [montantTravaux, setMontantTravaux] = useState(0);
-    const [taxeFonciere, setTaxeFonciere] = useState(0);
-    const [assurancePNO, setAssurancePNO] = useState(0);
-    const [garantieLoyerImpaye, setGarantieLoyerImpaye] = useState(0);
-    const [chargesCoproProprietaire, setChargesCoproProprietaire] = useState(0);
-    const [chargesCoproLocataire, setChargesCoproLocataire] = useState(0);
-    const [dureeAmortissementTravaux, setDureeAmortissementTravaux] = useState(6);
-    const [dureeAmortissementMeubles, setDureeAmortissementMeubles] = useState(6);
-    const [dureeAmortissementAgence, setDureeAmortissementAgence] = useState(6);
-    const [dureeAmortissementBien, setDureeAmortissementBien] = useState(25);
-    const [dureeAmortissementNotaire, setDureeAmortissementNotaire] = useState(20);
+    const [tauxEmprunt, setTauxEmprunt] = useLocalStorage('tauxEmprunt',1.5);
+    const [montantEmprunt, setMontantEmprunt] = useLocalStorage('montantEmprunt',0);
+    const [dureePret, setDureePret] = useLocalStorage('dureePret', 20);
+    const [tableauAmortissement, setTableauAmortissement] = useLocalStorage('tableauAmortissement', [] as LigneAmortissement[]);
+    const [loyerHC, setLoyerHC] = useLocalStorage('loyerHC', 0);
+    const [chargesLoyer, setChargesLoyer] = useLocalStorage('chargesLoyer',0);
+    const [mensualite, setMensualite] = useLocalStorage('mensualite',0);
+    const [tmi, setTmi] = useLocalStorage('tmi', 30);
+    const [charges, setCharges] = useLocalStorage('charges', defaultCharges);
+    const [fraisAgence, setFraisAgence] = useLocalStorage('fraisAgence',0);
+    const [fraisNotaire, setFraisNotaire] = useLocalStorage('fraisNotaire',0);
+    const [valeurBien, setValeurBien] = useLocalStorage('valeurBien',0);
+    const [montantMeuble, setMontantMeuble] = useLocalStorage('montantMeuble',0);
+    const [montantTravaux, setMontantTravaux] = useLocalStorage('montantTravaux',0);
+    const [taxeFonciere, setTaxeFonciere] = useLocalStorage('taxeFonciere',0);
+    const [assurancePNO, setAssurancePNO] = useLocalStorage('assurancePNO',0);
+    const [garantieLoyerImpaye, setGarantieLoyerImpaye] = useLocalStorage('garantieLoyerImpaye',0);
+    const [chargesCoproProprietaire, setChargesCoproProprietaire] = useLocalStorage('chargesCoproProprietaire',0);
+    const [chargesCoproLocataire, setChargesCoproLocataire] = useLocalStorage('chargesCoproLocataire',0);
+    const [dureeAmortissementTravaux, setDureeAmortissementTravaux] = useLocalStorage('dureeAmortissementTravaux',6);
+    const [dureeAmortissementMeubles, setDureeAmortissementMeubles] = useLocalStorage('dureeAmortissementMeubles',6);
+    const [dureeAmortissementAgence, setDureeAmortissementAgence] = useLocalStorage('dureeAmortissementAgence',6);
+    const [dureeAmortissementBien, setDureeAmortissementBien] = useLocalStorage('dureeAmortissementBien',25);
+    const [dureeAmortissementNotaire, setDureeAmortissementNotaire] = useLocalStorage('dureeAmortissementNotaire',20);
 
     const useDebounced = <T extends (...args: any) => any>(func:T, delay:number) => {
         return useCallback(debounce(func, delay), []);
