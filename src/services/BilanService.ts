@@ -37,7 +37,7 @@ interface ChargeAmortissable {
 }
 
 
-function getCharges(charges: Charges): number {
+function getChargesNonAmortissables(charges: Charges): number {
     const {
         taxeFonciere = 0,
         assurancePNO = 0,
@@ -63,6 +63,17 @@ function getAmortissement(charge: ChargeAmortissable, annee: number): number {
     return round(charge.montant / charge.dureeAmortissement);
 }
 
+function getAnnuite(capitalRestantDu: number, mensualite: number) {
+    return capitalRestantDu > 0 ? round(mensualite * 12) : 0;
+}
+
+function getCumulDeficitBenefForCurrentYear(recettes: number, amortissements: number, chargesNonAmortissables: number, interets: number) {
+    return round(recettes - amortissements - chargesNonAmortissables - interets);
+}
+
+function getCumulDeficitBenefFromLastYear(result: LigneBilan[], annee: number) {
+    return round(result.find(ligneBilan => ligneBilan.annee === annee - 1 && ligneBilan.cumulDeficitBenef < 0)?.cumulDeficitBenef ?? 0);
+}
 
 function genererBilanPrevisionnel(loyerCC: number, tableauAmortissement: LigneAmortissement[], charges: Charges, tmi: number, mensualite: number): LigneBilan[] {
     const result = [];
@@ -71,18 +82,18 @@ function genererBilanPrevisionnel(loyerCC: number, tableauAmortissement: LigneAm
     for (let annee = 1; annee <= 30; annee++) {
         const interets = getInterets(tableauAmortissement, annee);
         const capitalRestantDu = getCapitalRestantDu(tableauAmortissement, 12 * annee + 1);
-        const annuite = capitalRestantDu > 0 ? round(mensualite * 12) : 0;
+        const annuite = getAnnuite(capitalRestantDu, mensualite);
         const amortissements = getAmortissements(charges, annee);
-        const chargesNonAmortissables = getCharges(charges);
-        let cumulDeficitBenef = round(recettes - amortissements - chargesNonAmortissables - interets);
+        const chargesNonAmortissables = getChargesNonAmortissables(charges);
+        let cumulDeficitBenef = getCumulDeficitBenefForCurrentYear(recettes, amortissements, chargesNonAmortissables, interets);
         let baseImposable;
-        const cumulDeficitBenefLastYear = round(result.find(ligneBilan => ligneBilan.annee === annee - 1 && ligneBilan.cumulDeficitBenef < 0)?.cumulDeficitBenef ?? 0);
+        const cumulDeficitBenefLastYear = getCumulDeficitBenefFromLastYear(result, annee);
         cumulDeficitBenef += cumulDeficitBenefLastYear;
-        if(cumulDeficitBenef < 0) {
+        if (cumulDeficitBenef < 0) {
             baseImposable = 0;
         } else {
             baseImposable = cumulDeficitBenef;
-            cumulDeficitBenef = round(recettes - amortissements - chargesNonAmortissables - interets);
+            cumulDeficitBenef = getCumulDeficitBenefForCurrentYear(recettes, amortissements, chargesNonAmortissables, interets);
         }
         const prelevementSociaux = round(baseImposable * 17.2 / 100);
         const impotRevenu = round((baseImposable - prelevementSociaux) * tmi / 100);
