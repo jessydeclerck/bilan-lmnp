@@ -1,4 +1,4 @@
-import { round } from "../Utils/BilanUtils";
+import {round} from "../Utils/BilanUtils";
 
 function calculerMensualite(capital: number, tauxAnnuel: number, annees: number): string {
     const tauxMensuel = tauxAnnuel / 12 / 100;
@@ -15,7 +15,7 @@ interface LigneAmortissement {
 
 function genererTableauAmortissement(capital: number, taux: number, annees: number): LigneAmortissement[] {
     const tableauAmortissement: LigneAmortissement[] = [];
-    const mensualite = round(Number.parseFloat(calculerMensualite(capital, taux, annees)));
+    const mensualite = Number.parseFloat(calculerMensualite(capital, taux, annees));
     const tauxMensuel = taux / 12 / 100;
 
     tableauAmortissement.push({
@@ -28,22 +28,34 @@ function genererTableauAmortissement(capital: number, taux: number, annees: numb
 
     for (let idx = 1; idx < annees * 12; idx++) {
         const moisPrecedent = tableauAmortissement[idx - 1];
-        const capitalRestantDu = round(moisPrecedent.capitalRestantDu - moisPrecedent.capitalRembourse);
-        const interets = round(capitalRestantDu * tauxMensuel);
+        const capitalRestantDu = moisPrecedent.capitalRestantDu - moisPrecedent.capitalRembourse;
+        const interets = capitalRestantDu * tauxMensuel;
+        let capitalRembourse = mensualite - interets;
+        if(capitalRestantDu + interets <= mensualite) {
+            capitalRembourse = capitalRestantDu
+        }
         tableauAmortissement.push({
             id: idx + 1,
             mois: idx + 1,
-            capitalRestantDu,
-            interets,
-            capitalRembourse: round(mensualite - interets)
+            capitalRestantDu: round(capitalRestantDu),
+            interets: round(interets),
+            capitalRembourse: round(capitalRembourse)
         })
     }
 
     return tableauAmortissement;
 }
 
+function getAnnuite(tableauAmortissement: LigneAmortissement[], annee: number): number {
+    const dernierMois = annee * 12;
+    const premierMois = dernierMois - 12;
+    const periodeRemboursement = tableauAmortissement.slice(premierMois, dernierMois);
+    return periodeRemboursement.map(ligneAmortissement => ligneAmortissement.interets + ligneAmortissement.capitalRembourse)
+        .reduce((sum, currentValue) => sum + currentValue, 0);
+}
+
 function getCapitalRestantDu(tableauAmortissement: LigneAmortissement[], mois: number): number {
-    if(mois > tableauAmortissement.length) {
+    if (mois > tableauAmortissement.length) {
         return 0;
     }
     return tableauAmortissement[mois - 1].capitalRestantDu;
@@ -58,5 +70,5 @@ function getInterets(tableauAmortissement: LigneAmortissement[], annee: number) 
 }
 
 
-export {calculerMensualite, genererTableauAmortissement, getCapitalRestantDu, getInterets};
+export {calculerMensualite, genererTableauAmortissement, getCapitalRestantDu, getInterets, getAnnuite};
 export type {LigneAmortissement};

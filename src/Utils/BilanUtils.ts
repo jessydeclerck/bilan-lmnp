@@ -1,3 +1,5 @@
+import {round as _round} from "lodash";
+
 interface sliderMark {
     value: number;
     label: string
@@ -12,7 +14,7 @@ const generateMarks = (steps: any, suffix = ''): sliderMark[] => {
 }
 
 function round(value:number){
-    return Number(value.toFixed(2));
+    return _round(value, 2);
 }
 
 export {generateMarks, round};

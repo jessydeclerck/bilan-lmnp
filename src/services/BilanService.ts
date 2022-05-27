@@ -1,4 +1,4 @@
-import {getCapitalRestantDu, getInterets, LigneAmortissement} from "./EmpruntService";
+import {getAnnuite, getCapitalRestantDu, getInterets, LigneAmortissement} from "./EmpruntService";
 import {round} from "../Utils/BilanUtils";
 
 interface LigneBilan {
@@ -56,18 +56,10 @@ function getAmortissements(charges: Charges, annee: number): number {
 }
 
 function getAmortissement(charge: ChargeAmortissable, annee: number): number {
-    console.log(`année: ${annee} | durée amortissement: ${charge.dureeAmortissement}`);
     if (annee > charge.dureeAmortissement) {
         return 0;
     }
     return charge.montant / charge.dureeAmortissement;
-}
-
-function getAnnuite(capitalRestantDu: number, mensualite: number) {
-    if(capitalRestantDu < mensualite*12) {
-        return capitalRestantDu;
-    }
-    return capitalRestantDu > 0 ? mensualite * 12 : 0;
 }
 
 function getCumulDeficitBenefForCurrentYear(recettes: number, amortissements: number, chargesNonAmortissables: number, interets: number) {
@@ -85,7 +77,7 @@ function genererBilanPrevisionnel(loyerCC: number, tableauAmortissement: LigneAm
     for (let annee = 1; annee <= 30; annee++) {
         const interets = getInterets(tableauAmortissement, annee);
         const capitalRestantDu = getCapitalRestantDu(tableauAmortissement, 12 * annee + 1);
-        const annuite = getAnnuite(capitalRestantDu, mensualite);
+        const annuite = getAnnuite(tableauAmortissement, annee);
         const amortissements = getAmortissements(charges, annee);
         const chargesNonAmortissables = getChargesNonAmortissables(charges);
         let cumulDeficitBenef = getCumulDeficitBenefForCurrentYear(recettes, amortissements, chargesNonAmortissables, interets);

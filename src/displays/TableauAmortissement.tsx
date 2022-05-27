@@ -21,17 +21,7 @@ const columns: GridColDef[] = [
     {field: 'capitalRembourse', headerName: 'Capital remboursé', width: 180, sortable: false},
 ];
 
-function TableauAmortissement(props: TableauAmortissementProps): JSX.Element {
-    const {tableauAmortissement} = props;
-    const tableauAmortissementFixed = tableauAmortissement.map(row => {
-        return {
-            id: row.id,
-            mois: row.mois,
-            capitalRestantDu: row.capitalRestantDu.toFixed(2),
-            interets: row.interets.toFixed(2),
-            capitalRembourse: row.capitalRembourse.toFixed(2)
-        };
-    })
+function TableauAmortissement({tableauAmortissement}: TableauAmortissementProps): JSX.Element {
 
     return <Paper elevation={3} sx={{
         padding: '5px 10px',
@@ -42,7 +32,7 @@ function TableauAmortissement(props: TableauAmortissementProps): JSX.Element {
     }}>
         <InputLabel sx={inputLabelStyle}>Tableau d'amortissement prêt</InputLabel>
         <DataGrid
-            rows={tableauAmortissementFixed}
+            rows={tableauAmortissement}
             columns={columns}
             pageSize={12}
             rowsPerPageOptions={[12]}

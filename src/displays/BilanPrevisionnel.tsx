@@ -44,8 +44,6 @@ function BilanPrevisionnel(props: BilanPrevisionnelProps): JSX.Element {
 
     const bilanPrevisionnel: LigneBilan[] = genererBilanPrevisionnel(loyerCC, tableauAmortissement, charges, tmi, mensualite);
 
-    console.log(bilanPrevisionnel);
-
     return <Paper elevation={3} sx={{
         padding: '5px 10px',
         display: 'flex',
