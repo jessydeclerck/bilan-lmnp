@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useCallback, useEffect, useState} from 'react';
 import './App.css';
-import {AppBar, Container, CssBaseline, Grid, SelectChangeEvent, ThemeOptions} from "@mui/material";
+import {AppBar, Container, CssBaseline, Grid, SelectChangeEvent, ThemeOptions, Typography} from "@mui/material";
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {amber, blue, grey} from "@mui/material/colors";
 import TauxEmpruntInput from "./inputs/TauxEmpruntInput";
@@ -298,6 +298,9 @@ function App() {
                                 </Grid>
                             </Grid>
                         </main>
+                        <footer>
+                            <p><Typography sx={{color:'DimGray', fontSize:'14px', textAlign:'center'}}>Code disponible sur <a href={'https://github.com/jessydeclerck/bilan-lmnp'} target={'_blank'}>GitHub</a></Typography></p>
+                        </footer>
                     </Container>
                 </CssBaseline>
             </ThemeProvider>
