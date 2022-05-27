@@ -9,7 +9,7 @@ interface MontantEmpruntProps {
     handleInputChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 }
 
-function MontantEmpruntInput(props:MontantEmpruntProps): JSX.Element {
+function MontantEmpruntInput(props: MontantEmpruntProps): JSX.Element {
     const {value, handleInputChange} = props;
 
     return <GenericAmountInput label={label} icon={<AccountBalanceIcon/>} value={value} step={500}

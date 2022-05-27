@@ -65,8 +65,8 @@ function BilanPrevisionnel(props: BilanPrevisionnelProps): JSX.Element {
             disableSelectionOnClick
             disableColumnFilter
             disableColumnMenu
-            components={{ Toolbar: GridToolbar }}
-            componentsProps={{ toolbar: { printOptions: { disableToolbarButton: true }, csvOptions: {utf8WithBom: true} } }}
+            components={{Toolbar: GridToolbar}}
+            componentsProps={{toolbar: {printOptions: {disableToolbarButton: true}, csvOptions: {utf8WithBom: true}}}}
             localeText={frFR.components.MuiDataGrid.defaultProps.localeText}
         />
     </Paper>;

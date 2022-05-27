@@ -1,4 +1,4 @@
-import {Box, FormControl, InputAdornment, InputLabel, OutlinedInput, Paper, Slider, Typography} from "@mui/material";
+import {Box, FormControl, InputAdornment, InputLabel, OutlinedInput, Paper, Slider} from "@mui/material";
 import {calculerMensualite} from "../services/EmpruntService";
 import {useState} from "react";
 import {generateMarks} from "../Utils/BilanUtils";
@@ -37,7 +37,13 @@ function DureeEmprunt(props: MensualitesProps): JSX.Element {
         height: '120px'
     }}>
         <InputLabel sx={inputLabelStyle}>Durée emprunt</InputLabel>
-        <Box sx={{display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', height: '60%', fontWeight: 'bold'}}>
+        <Box sx={{
+            display: 'flex',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
+            height: '60%',
+            fontWeight: 'bold'
+        }}>
             <Slider
                 aria-label={"Durée emprunt"}
                 value={valueDisplayed}
@@ -50,7 +56,7 @@ function DureeEmprunt(props: MensualitesProps): JSX.Element {
                 min={10}
                 max={30}
                 marks={dureeMarks}
-                sx={{width:'60%'}}
+                sx={{width: '60%'}}
             >
             </Slider>
             <FormControl sx={{width: '30%'}}>
@@ -72,7 +78,7 @@ function DureeEmprunt(props: MensualitesProps): JSX.Element {
             </FormControl>
         </Box>
     </Paper>;
-    ;
+
 }
 
 export default DureeEmprunt;

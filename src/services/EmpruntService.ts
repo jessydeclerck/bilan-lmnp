@@ -31,7 +31,7 @@ function genererTableauAmortissement(capital: number, taux: number, annees: numb
         const capitalRestantDu = moisPrecedent.capitalRestantDu - moisPrecedent.capitalRembourse;
         const interets = capitalRestantDu * tauxMensuel;
         let capitalRembourse = mensualite - interets;
-        if(capitalRestantDu + interets <= mensualite) {
+        if (capitalRestantDu + interets <= mensualite) {
             capitalRembourse = capitalRestantDu
         }
         tableauAmortissement.push({

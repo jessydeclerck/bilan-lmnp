@@ -7,7 +7,7 @@ interface TmiSelectProps {
     handleTmiChange: (event: SelectChangeEvent) => void;
 }
 
-function TmiSelect(props:TmiSelectProps): JSX.Element {
+function TmiSelect(props: TmiSelectProps): JSX.Element {
     const {tmi, handleTmiChange} = props;
 
     return <BilanParameterInput label={"Tranche marginale d'imposition"}>

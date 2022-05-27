@@ -13,7 +13,7 @@ const generateMarks = (steps: any, suffix = ''): sliderMark[] => {
     return result;
 }
 
-function round(value:number){
+function round(value: number) {
     return _round(value, 2);
 }
 

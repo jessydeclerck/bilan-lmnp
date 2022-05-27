@@ -28,16 +28,16 @@ const notaireMarks = generateMarks(notaireSliderSteps);
 const typographyStyle = {fontSize: '13px', color: 'rgba(0, 0, 0, 0.6)'};
 
 interface AmortissementInputProps {
-    dureeAmortissementTravaux:number;
-    dureeAmortissementMeubles:number;
-    dureeAmortissementAgence:number;
-    dureeAmortissementBien:number;
-    dureeAmortissementNotaire:number;
-    handleDureeAmortissementTravauxChange:(event: Event, newValue: number | number[]) => void;
-    handleDureeAmortissementMeublesChange:(event: Event, newValue: number | number[]) => void;
-    handleDureeAmortissementAgenceChange:(event: Event, newValue: number | number[]) => void;
-    handleDureeAmortissementBienChange:(event: Event, newValue: number | number[]) => void;
-    handleDureeAmortissementNotaireChange:(event: Event, newValue: number | number[]) => void;
+    dureeAmortissementTravaux: number;
+    dureeAmortissementMeubles: number;
+    dureeAmortissementAgence: number;
+    dureeAmortissementBien: number;
+    dureeAmortissementNotaire: number;
+    handleDureeAmortissementTravauxChange: (event: Event, newValue: number | number[]) => void;
+    handleDureeAmortissementMeublesChange: (event: Event, newValue: number | number[]) => void;
+    handleDureeAmortissementAgenceChange: (event: Event, newValue: number | number[]) => void;
+    handleDureeAmortissementBienChange: (event: Event, newValue: number | number[]) => void;
+    handleDureeAmortissementNotaireChange: (event: Event, newValue: number | number[]) => void;
 }
 
 function AmortissementInput({
@@ -83,7 +83,7 @@ function AmortissementInput({
                 value={meublesValueDisplayed}
                 onChange={(event, newValue) => {
                     setMeublesValueDisplayed(Number(newValue));
-                    handleDureeAmortissementMeublesChange(event,newValue);
+                    handleDureeAmortissementMeublesChange(event, newValue);
                 }}
                 valueLabelDisplay={"auto"}
                 step={defaultSliderSteps.step}
@@ -99,7 +99,7 @@ function AmortissementInput({
                 value={agenceValueDisplayed}
                 onChange={(event, newValue) => {
                     setAgenceValueDisplayed(Number(newValue));
-                    handleDureeAmortissementAgenceChange(event,newValue);
+                    handleDureeAmortissementAgenceChange(event, newValue);
                 }}
                 valueLabelDisplay={"auto"}
                 step={defaultSliderSteps.step}
@@ -115,7 +115,7 @@ function AmortissementInput({
                 value={bienValueDisplayed}
                 onChange={(event, newValue) => {
                     setBienValueDisplayed(Number(newValue));
-                    handleDureeAmortissementBienChange(event,newValue);
+                    handleDureeAmortissementBienChange(event, newValue);
                 }}
                 valueLabelDisplay={"auto"}
                 step={1}
@@ -131,7 +131,7 @@ function AmortissementInput({
                 value={notaireValueDisplayed}
                 onChange={(event, newValue) => {
                     setNotaireValueDisplayed(Number(newValue));
-                    handleDureeAmortissementNotaireChange(event,newValue);
+                    handleDureeAmortissementNotaireChange(event, newValue);
                 }}
                 valueLabelDisplay={"auto"}
                 step={1}

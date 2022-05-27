@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useCallback, useEffect, useState} from 'react';
+import React, {ChangeEvent, useEffect, useMemo} from 'react';
 import './App.css';
 import {AppBar, Container, CssBaseline, Grid, SelectChangeEvent, ThemeOptions, Typography} from "@mui/material";
 import {createTheme, ThemeProvider} from '@mui/material/styles';
@@ -55,40 +55,40 @@ const defaultCharges: Charges = {
 };
 
 function App() {
-    const [tauxEmprunt, setTauxEmprunt] = useLocalStorage('tauxEmprunt',1.5);
-    const [montantEmprunt, setMontantEmprunt] = useLocalStorage('montantEmprunt',0);
+    const [tauxEmprunt, setTauxEmprunt] = useLocalStorage('tauxEmprunt', 1.5);
+    const [montantEmprunt, setMontantEmprunt] = useLocalStorage('montantEmprunt', 0);
     const [dureePret, setDureePret] = useLocalStorage('dureePret', 20);
     const [tableauAmortissement, setTableauAmortissement] = useLocalStorage('tableauAmortissement', [] as LigneAmortissement[]);
     const [loyerHC, setLoyerHC] = useLocalStorage('loyerHC', 0);
-    const [chargesLoyer, setChargesLoyer] = useLocalStorage('chargesLoyer',0);
-    const [mensualite, setMensualite] = useLocalStorage('mensualite',0);
+    const [chargesLoyer, setChargesLoyer] = useLocalStorage('chargesLoyer', 0);
+    const [mensualite, setMensualite] = useLocalStorage('mensualite', 0);
     const [tmi, setTmi] = useLocalStorage('tmi', 30);
     const [charges, setCharges] = useLocalStorage('charges', defaultCharges);
-    const [fraisAgence, setFraisAgence] = useLocalStorage('fraisAgence',0);
-    const [fraisNotaire, setFraisNotaire] = useLocalStorage('fraisNotaire',0);
-    const [valeurBien, setValeurBien] = useLocalStorage('valeurBien',0);
-    const [montantMeuble, setMontantMeuble] = useLocalStorage('montantMeuble',0);
-    const [montantTravaux, setMontantTravaux] = useLocalStorage('montantTravaux',0);
-    const [taxeFonciere, setTaxeFonciere] = useLocalStorage('taxeFonciere',0);
-    const [assurancePNO, setAssurancePNO] = useLocalStorage('assurancePNO',0);
-    const [garantieLoyerImpaye, setGarantieLoyerImpaye] = useLocalStorage('garantieLoyerImpaye',0);
-    const [chargesCoproProprietaire, setChargesCoproProprietaire] = useLocalStorage('chargesCoproProprietaire',0);
-    const [chargesCoproLocataire, setChargesCoproLocataire] = useLocalStorage('chargesCoproLocataire',0);
-    const [dureeAmortissementTravaux, setDureeAmortissementTravaux] = useLocalStorage('dureeAmortissementTravaux',6);
-    const [dureeAmortissementMeubles, setDureeAmortissementMeubles] = useLocalStorage('dureeAmortissementMeubles',6);
-    const [dureeAmortissementAgence, setDureeAmortissementAgence] = useLocalStorage('dureeAmortissementAgence',6);
-    const [dureeAmortissementBien, setDureeAmortissementBien] = useLocalStorage('dureeAmortissementBien',25);
-    const [dureeAmortissementNotaire, setDureeAmortissementNotaire] = useLocalStorage('dureeAmortissementNotaire',20);
+    const [fraisAgence, setFraisAgence] = useLocalStorage('fraisAgence', 0);
+    const [fraisNotaire, setFraisNotaire] = useLocalStorage('fraisNotaire', 0);
+    const [valeurBien, setValeurBien] = useLocalStorage('valeurBien', 0);
+    const [montantMeuble, setMontantMeuble] = useLocalStorage('montantMeuble', 0);
+    const [montantTravaux, setMontantTravaux] = useLocalStorage('montantTravaux', 0);
+    const [taxeFonciere, setTaxeFonciere] = useLocalStorage('taxeFonciere', 0);
+    const [assurancePNO, setAssurancePNO] = useLocalStorage('assurancePNO', 0);
+    const [garantieLoyerImpaye, setGarantieLoyerImpaye] = useLocalStorage('garantieLoyerImpaye', 0);
+    const [chargesCoproProprietaire, setChargesCoproProprietaire] = useLocalStorage('chargesCoproProprietaire', 0);
+    const [chargesCoproLocataire, setChargesCoproLocataire] = useLocalStorage('chargesCoproLocataire', 0);
+    const [dureeAmortissementTravaux, setDureeAmortissementTravaux] = useLocalStorage('dureeAmortissementTravaux', 6);
+    const [dureeAmortissementMeubles, setDureeAmortissementMeubles] = useLocalStorage('dureeAmortissementMeubles', 6);
+    const [dureeAmortissementAgence, setDureeAmortissementAgence] = useLocalStorage('dureeAmortissementAgence', 6);
+    const [dureeAmortissementBien, setDureeAmortissementBien] = useLocalStorage('dureeAmortissementBien', 25);
+    const [dureeAmortissementNotaire, setDureeAmortissementNotaire] = useLocalStorage('dureeAmortissementNotaire', 20);
 
-    const useDebounced = <T extends (...args: any) => any>(func:T, delay:number) => {
-        return useCallback(debounce(func, delay), []);
+      const useDebounced = <T extends (...args: any) => any>(func: T) => {
+        return useMemo(() => debounce(func, 200), [func]);
     }
 
-    const updateCharges = (charges:Charges) => {
+    const updateCharges = (charges: Charges) => {
         setCharges(charges);
     }
 
-    const debouncedUpdateCharges = useDebounced(updateCharges, 200);
+    const debouncedUpdateCharges = useDebounced(updateCharges);
 
     useEffect(() => {
         const newValue = {
@@ -104,7 +104,8 @@ function App() {
             coproLocataire: chargesCoproLocataire
         }
         debouncedUpdateCharges(newValue)
-    }, [fraisAgence, fraisNotaire, valeurBien, montantMeuble, montantTravaux, taxeFonciere, assurancePNO, garantieLoyerImpaye, chargesCoproProprietaire, chargesCoproLocataire, dureeAmortissementTravaux, dureeAmortissementMeubles, dureeAmortissementAgence, dureeAmortissementBien, dureeAmortissementNotaire]);
+        // estlint-disable-next-line
+    }, [debouncedUpdateCharges, fraisAgence, fraisNotaire, valeurBien, montantMeuble, montantTravaux, taxeFonciere, assurancePNO, garantieLoyerImpaye, chargesCoproProprietaire, chargesCoproLocataire, dureeAmortissementTravaux, dureeAmortissementMeubles, dureeAmortissementAgence, dureeAmortissementBien, dureeAmortissementNotaire]);
 
     const handleDureeAmortissementTravauxChange = (event: Event, newValue: number | number[]) => {
         setDureeAmortissementTravaux(Number(newValue))
@@ -179,7 +180,7 @@ function App() {
         setDureePret(Number(newValue))
     }
 
-    const debouncedHandleDureePretChange = useDebounced(handleDureePretChange, 200);
+    const debouncedHandleDureePretChange = useDebounced(handleDureePretChange);
 
     const handleTauxSliderChange = (event: Event, newValue: number | number[]) => {
         setTauxEmprunt(Number(newValue))
@@ -193,16 +194,16 @@ function App() {
         setMontantEmprunt(Number(event.target.value));
     }
 
-    const updateDisplays = (tauxEmprunt:number, montantEmprunt:number, dureePret:number) => {
+    const updateDisplays = (tauxEmprunt: number, montantEmprunt: number, dureePret: number) => {
         setTableauAmortissement(genererTableauAmortissement(montantEmprunt, tauxEmprunt, dureePret));
         setMensualite(Number.parseFloat(calculerMensualite(montantEmprunt, tauxEmprunt, dureePret)));
     }
 
-    const debouncedUpdateDisplays = useDebounced(updateDisplays, 200);
+    const debouncedUpdateDisplays = useDebounced(updateDisplays);
 
     useEffect(() => {
         debouncedUpdateDisplays(tauxEmprunt, montantEmprunt, dureePret);
-    }, [tauxEmprunt, montantEmprunt, dureePret])
+    }, [tauxEmprunt, montantEmprunt, dureePret, debouncedUpdateDisplays])
 
     return (
         <>
@@ -219,7 +220,7 @@ function App() {
                                 <Grid item md={5} xs={12}>
                                     <TauxEmpruntInput value={tauxEmprunt}
                                                       handleInputChangeFunction={handleTauxInputChange}
-                                                      handleSliderChangeFunction={useDebounced(handleTauxSliderChange, 200)}/>
+                                                      handleSliderChangeFunction={useDebounced(handleTauxSliderChange)}/>
                                 </Grid>
                                 <Grid item md={2} xs={12}>
                                     <MontantEmpruntInput value={montantEmprunt}
@@ -277,11 +278,11 @@ function App() {
                                                             dureeAmortissementAgence={dureeAmortissementAgence}
                                                             dureeAmortissementBien={dureeAmortissementBien}
                                                             dureeAmortissementNotaire={dureeAmortissementNotaire}
-                                                            handleDureeAmortissementAgenceChange={useDebounced(handleDureeAmortissementAgenceChange,200)}
-                                                            handleDureeAmortissementBienChange={useDebounced(handleDureeAmortissementBienChange, 200)}
-                                                            handleDureeAmortissementMeublesChange={useDebounced(handleDureeAmortissementMeublesChange,200)}
-                                                            handleDureeAmortissementNotaireChange={useDebounced(handleDureeAmortissementNotaireChange,200)}
-                                                            handleDureeAmortissementTravauxChange={useDebounced(handleDureeAmortissementTravauxChange,200)}
+                                                            handleDureeAmortissementAgenceChange={useDebounced(handleDureeAmortissementAgenceChange)}
+                                                            handleDureeAmortissementBienChange={useDebounced(handleDureeAmortissementBienChange)}
+                                                            handleDureeAmortissementMeublesChange={useDebounced(handleDureeAmortissementMeublesChange)}
+                                                            handleDureeAmortissementNotaireChange={useDebounced(handleDureeAmortissementNotaireChange)}
+                                                            handleDureeAmortissementTravauxChange={useDebounced(handleDureeAmortissementTravauxChange)}
                                         />
                                     </Grid>
                                 </Grid>
@@ -299,7 +300,9 @@ function App() {
                             </Grid>
                         </main>
                         <footer>
-                            <p><Typography sx={{color:'DimGray', fontSize:'14px', textAlign:'center'}}>Code disponible sur <a href={'https://github.com/jessydeclerck/bilan-lmnp'} target={'_blank'}>GitHub</a></Typography></p>
+                            <p><Typography sx={{color: 'DimGray', fontSize: '14px', textAlign: 'center'}}>Code
+                                disponible sur <a href={'https://github.com/jessydeclerck/bilan-lmnp'} rel="noreferrer"
+                                                  target={'_blank'}>GitHub</a></Typography></p>
                         </footer>
                     </Container>
                 </CssBaseline>

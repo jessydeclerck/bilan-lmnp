@@ -1,6 +1,6 @@
 import {Grid, Input, InputAdornment, Slider} from "@mui/material";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
-import {ChangeEvent, ChangeEventHandler, useState} from "react";
+import {ChangeEventHandler, useState} from "react";
 import BilanParameterInput from "./BilanParameterInput";
 
 const stepsValue = {
@@ -56,55 +56,55 @@ interface TauxEmpruntProps {
     handleInputChangeFunction: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 }
 
-function TauxEmpruntInput(props:TauxEmpruntProps): JSX.Element {
+function TauxEmpruntInput(props: TauxEmpruntProps): JSX.Element {
     const {value, handleSliderChangeFunction, handleInputChangeFunction} = props;
     const [valueDisplayed, setValueDisplayed] = useState(value);
 
     return (
         <BilanParameterInput label={label}>
-        <Grid container spacing={2} justifyContent={"center"} sx={{marginTop: '0px'}}>
-            <Grid item>
-                <AccountBalanceIcon/>
+            <Grid container spacing={2} justifyContent={"center"} sx={{marginTop: '0px'}}>
+                <Grid item>
+                    <AccountBalanceIcon/>
+                </Grid>
+                <Grid item xs={8}>
+                    <Slider
+                        aria-label={label}
+                        value={valueDisplayed}
+                        onChange={(event, newValue) => {
+                            setValueDisplayed(Number(newValue));
+                            handleSliderChangeFunction(event, newValue);
+                        }}
+                        getAriaValueText={valuetext}
+                        valueLabelDisplay={"auto"}
+                        step={stepsValue.step}
+                        marks={marks}
+                        min={stepsValue.min}
+                        max={stepsValue.max}
+                        sx={{
+                            alignSelf: 'center',
+                        }}
+                    >
+                    </Slider>
+                </Grid>
+                <Grid item>
+                    <Input
+                        value={valueDisplayed}
+                        onChange={(event) => {
+                            setValueDisplayed(Number(event.target.value));
+                            handleInputChangeFunction(event);
+                        }}
+                        size="small"
+                        inputProps={{
+                            step: stepsValue.step,
+                            min: stepsValue.min,
+                            type: 'number',
+                            'aria-labelledby': 'input-slider',
+                        }}
+                        startAdornment={<InputAdornment position="end">%</InputAdornment>}
+                        sx={{width: '70px'}}
+                    />
+                </Grid>
             </Grid>
-            <Grid item xs={8}>
-                <Slider
-                    aria-label={label}
-                    value={valueDisplayed}
-                    onChange={(event, newValue) => {
-                        setValueDisplayed(Number(newValue));
-                        handleSliderChangeFunction(event, newValue);
-                    }}
-                    getAriaValueText={valuetext}
-                    valueLabelDisplay={"auto"}
-                    step={stepsValue.step}
-                    marks={marks}
-                    min={stepsValue.min}
-                    max={stepsValue.max}
-                    sx={{
-                        alignSelf: 'center',
-                    }}
-                >
-                </Slider>
-            </Grid>
-            <Grid item>
-                <Input
-                    value={valueDisplayed}
-                    onChange={(event) => {
-                        setValueDisplayed(Number(event.target.value));
-                        handleInputChangeFunction(event);
-                    }}
-                    size="small"
-                    inputProps={{
-                        step: stepsValue.step,
-                        min: stepsValue.min,
-                        type: 'number',
-                        'aria-labelledby': 'input-slider',
-                    }}
-                    startAdornment={<InputAdornment position="end">%</InputAdornment>}
-                    sx={{width: '70px'}}
-                />
-            </Grid>
-        </Grid>
         </BilanParameterInput>
     );
 }

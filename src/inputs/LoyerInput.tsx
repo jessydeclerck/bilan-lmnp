@@ -1,6 +1,6 @@
 import BilanParameterInput from "./BilanParameterInput";
 import {Box, FormControl, InputAdornment, InputLabel, OutlinedInput} from "@mui/material";
-import {ChangeEvent, ChangeEventHandler, useState} from "react";
+import {ChangeEventHandler} from "react";
 
 const label = "Loyer"
 
@@ -11,11 +11,11 @@ interface LoyerInputProps {
     handleChargesLoyerChange: ChangeEventHandler;
 }
 
-function LoyerInput(props:LoyerInputProps): JSX.Element {
+function LoyerInput(props: LoyerInputProps): JSX.Element {
     const {loyerHC, chargesLoyer, handleLoyerHCChange, handleChargesLoyerChange} = props;
 
     return (
-        <BilanParameterInput label={(loyerHC + chargesLoyer > 0) ? label + ` (${loyerHC + chargesLoyer}€)`:label }>
+        <BilanParameterInput label={(loyerHC + chargesLoyer > 0) ? label + ` (${loyerHC + chargesLoyer}€)` : label}>
             <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-evenly', height: '60%'}}>
                 <FormControl sx={{width: '45%'}}>
                     <InputLabel htmlFor={"outlined-adornment-loyer-hc"}>Loyer HC</InputLabel>

@@ -7,7 +7,7 @@ interface FraisNotaireProps {
     handleFraisNotaireChange: ChangeEventHandler;
 }
 
-function FraisNotaireInput(props:FraisNotaireProps): JSX.Element {
+function FraisNotaireInput(props: FraisNotaireProps): JSX.Element {
     const {fraisNotaire, handleFraisNotaireChange} = props;
 
     return <GenericAmountInput label={"Frais notaire"} icon={<HistoryEduIcon/>} value={fraisNotaire} step={100}
