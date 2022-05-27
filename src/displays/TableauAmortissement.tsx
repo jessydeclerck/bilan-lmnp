@@ -28,7 +28,8 @@ function TableauAmortissement({tableauAmortissement}: TableauAmortissementProps)
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-start',
-        height: '100%'
+        height: '100%',
+        minHeight: '500px'
     }}>
         <InputLabel sx={inputLabelStyle}>Tableau d'amortissement prêt</InputLabel>
         <DataGrid

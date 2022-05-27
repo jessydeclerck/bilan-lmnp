@@ -216,49 +216,49 @@ function App() {
                     <Container maxWidth="lg" className="container">
                         <main>
                             <Grid container spacing={2} sx={{marginTop: '0px'}}>
-                                <Grid item xs={5}>
+                                <Grid item md={5} xs={12}>
                                     <TauxEmpruntInput value={tauxEmprunt}
                                                       handleInputChangeFunction={handleTauxInputChange}
                                                       handleSliderChangeFunction={useDebounced(handleTauxSliderChange, 200)}/>
                                 </Grid>
-                                <Grid item xs={2}>
+                                <Grid item md={2} xs={12}>
                                     <MontantEmpruntInput value={montantEmprunt}
                                                          handleInputChange={handleMontantEmpruntChange}/>
                                 </Grid>
-                                <Grid item xs={5}>
+                                <Grid item md={5} xs={12}>
                                     <DureeEmprunt taux={tauxEmprunt} capital={montantEmprunt} dureePret={dureePret}
                                                   handleDureePretChange={debouncedHandleDureePretChange}/>
                                 </Grid>
-                                <Grid item xs={3}>
+                                <Grid item md={3} xs={12}>
                                     <LoyerInput loyerHC={loyerHC} chargesLoyer={chargesLoyer}
                                                 handleLoyerHCChange={handleLoyerHCChange}
                                                 handleChargesLoyerChange={handleChargesLoyerChange}/>
                                 </Grid>
-                                <Grid item xs={2}>
+                                <Grid item md={2} xs={6}>
                                     <FraisAgenceInput fraisAgence={fraisAgence}
                                                       handleFraisAgenceChange={handleFraisAgenceChange}/>
                                 </Grid>
-                                <Grid item xs={2}>
+                                <Grid item md={2} xs={6}>
                                     <FraisNotaireInput fraisNotaire={fraisNotaire}
                                                        handleFraisNotaireChange={handleFraisNotaireChange}/>
                                 </Grid>
-                                <Grid item xs={3}>
+                                <Grid item md={3} xs={6}>
                                     <ValeurAppartementInput valeurBien={valeurBien}
                                                             handleValeurBienChange={handleValeurBienChange}/>
                                 </Grid>
-                                <Grid item xs={2}>
+                                <Grid item md={2} xs={6}>
                                     <MeublesInput montantMeuble={montantMeuble}
                                                   handleMontantMeubleChange={handleMontantMeubleChange}/>
                                 </Grid>
-                                <Grid container item spacing={2} xs={6}>
-                                    <Grid item xs={4}>
+                                <Grid container item spacing={2} md={6} xs={12}>
+                                    <Grid item md={4} xs={12}>
                                         <TravauxInput montantTravaux={montantTravaux}
                                                       handleMontantTravauxChange={handleMontantTravauxChange}/>
                                     </Grid>
-                                    <Grid item xs={8}>
+                                    <Grid item md={8} xs={12}>
                                         <TmiSelect tmi={tmi} handleTmiChange={handleTmiChange}/>
                                     </Grid>
-                                    <Grid item xs={4}>
+                                    <Grid item md={4} xs={12}>
                                         <ChargesInput taxeFonciere={taxeFonciere}
                                                       garantieLoyerImpaye={garantieLoyerImpaye}
                                                       assurancePNO={assurancePNO}
@@ -271,7 +271,7 @@ function App() {
                                                       handleGarantieLoyerImpayeChange={handleGarantieLoyerImpayeChange}
                                         />
                                     </Grid>
-                                    <Grid item xs={8}>
+                                    <Grid item md={8} xs={12}>
                                         <AmortissementInput dureeAmortissementMeubles={dureeAmortissementMeubles}
                                                             dureeAmortissementTravaux={dureeAmortissementTravaux}
                                                             dureeAmortissementAgence={dureeAmortissementAgence}
@@ -285,12 +285,12 @@ function App() {
                                         />
                                     </Grid>
                                 </Grid>
-                                <Grid container item spacing={2} xs={6}>
-                                    <Grid item xs={12}>
+                                <Grid container item spacing={2} md={6} xs={12}>
+                                    <Grid item md={12} xs={12}>
                                         <TableauAmortissement tableauAmortissement={tableauAmortissement}/>
                                     </Grid>
                                 </Grid>
-                                <Grid item xs={12}>
+                                <Grid item md={12} xs={12}>
                                     <BilanPrevisionnel loyerCC={loyerHC + chargesLoyer}
                                                        tableauAmortissement={tableauAmortissement} charges={charges}
                                                        tmi={tmi}
