@@ -1,0 +1,130 @@
+import BilanParameterInput from "./BilanParameterInput";
+import {Box, InputAdornment, InputLabel, OutlinedInput} from "@mui/material";
+import {ChangeEventHandler} from "react";
+import FormControl from "@mui/material/FormControl";
+
+interface ChargesInputProps {
+    taxeFonciere: number;
+    assurancePNO: number;
+    garantieLoyerImpaye: number;
+    chargesCoproProprietaire: number;
+    chargesCoproLocataire: number;
+    handleTaxeFonciereChange: ChangeEventHandler;
+    handleAssurancePNOChange: ChangeEventHandler;
+    handleGarantieLoyerImpayeChange: ChangeEventHandler;
+    handleChargeCoproProprietaire: ChangeEventHandler;
+    handleChargesCoproLocataire: ChangeEventHandler;
+}
+
+function ChargesInput(props: ChargesInputProps): JSX.Element {
+    const {
+        taxeFonciere,
+        assurancePNO,
+        garantieLoyerImpaye,
+        chargesCoproProprietaire,
+        chargesCoproLocataire,
+        handleTaxeFonciereChange,
+        handleAssurancePNOChange,
+        handleGarantieLoyerImpayeChange,
+        handleChargesCoproLocataire,
+        handleChargeCoproProprietaire
+    } = props;
+
+    return <BilanParameterInput label={"Charges"} height={'415px'}>
+        <Box sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
+            height: '100%'
+        }}>
+            <FormControl>
+                <InputLabel htmlFor={"taxe-fonciere"}>Taxe foncière</InputLabel>
+                <OutlinedInput
+                    id={'taxe-fonciere'}
+                    label={"Taxe foncière"}
+                    value={taxeFonciere}
+                    onChange={handleTaxeFonciereChange}
+                    size="small"
+                    inputProps={{
+                        step: 50,
+                        min: 0,
+                        type: 'number',
+                        'aria-labelledby': 'Taxe foncière',
+                    }}
+                    endAdornment={<InputAdornment position="end">€</InputAdornment>}
+                />
+            </FormControl>
+            <FormControl>
+                <InputLabel htmlFor={"assurance-pno"}>Assurance PNO</InputLabel>
+                <OutlinedInput
+                    id={"assurance-pno"}
+                    label={"Assurance PNO"}
+                    value={assurancePNO}
+                    onChange={handleAssurancePNOChange}
+                    size="small"
+                    inputProps={{
+                        step: 50,
+                        min: 0,
+                        type: 'number',
+                        'aria-labelledby': 'Assurance PNO',
+                    }}
+                    endAdornment={<InputAdornment position="end">€</InputAdornment>}
+                />
+            </FormControl>
+            <FormControl>
+                <InputLabel htmlFor={"garantie-loyer-impaye"}>Garantie loyer impayé</InputLabel>
+                <OutlinedInput
+                    id={"garantie-loyer-impaye"}
+                    label={"Garantie loyer impayé"}
+                    value={garantieLoyerImpaye}
+                    onChange={handleGarantieLoyerImpayeChange}
+                    size="small"
+                    inputProps={{
+                        step: 50,
+                        min: 0,
+                        type: 'number',
+                        'aria-labelledby': 'Garantie loyer impayé',
+                    }}
+                    endAdornment={<InputAdornment position="end">€</InputAdornment>}
+                />
+            </FormControl>
+            <FormControl>
+                <InputLabel htmlFor={"charges-copro-proprietaire"}>Charges copro propriétaire</InputLabel>
+                <OutlinedInput
+                    id={"charges-copro-proprietaire"}
+                    label={"Charges copro propriétaire"}
+                    value={chargesCoproProprietaire}
+                    onChange={handleChargeCoproProprietaire}
+                    size="small"
+                    inputProps={{
+                        step: 10,
+                        min: 0,
+                        type: 'number',
+                        'aria-labelledby': 'Charges copro propriétaire',
+                    }}
+                    endAdornment={<InputAdornment position="end">€</InputAdornment>}
+                />
+            </FormControl>
+            <FormControl>
+                <InputLabel htmlFor={"charges-copro-locataire"}>Charges copro locataire</InputLabel>
+                <OutlinedInput
+                    id={"charges-copro-locataire"}
+                    label={"Charges copro locataire"}
+                    value={chargesCoproLocataire}
+                    onChange={handleChargesCoproLocataire}
+                    size="small"
+                    inputProps={{
+                        step: 10,
+                        min: 0,
+                        type: 'number',
+                        'aria-labelledby': 'Charges copro locataire',
+                    }}
+                    endAdornment={<InputAdornment position="end">€</InputAdornment>}
+                />
+            </FormControl>
+        </Box>
+    </BilanParameterInput>
+}
+
+export default ChargesInput;
