@@ -80,8 +80,9 @@ function App() {
     const [dureeAmortissementBien, setDureeAmortissementBien] = useLocalStorage('dureeAmortissementBien', 25);
     const [dureeAmortissementNotaire, setDureeAmortissementNotaire] = useLocalStorage('dureeAmortissementNotaire', 20);
 
-      const useDebounced = <T extends (...args: any) => any>(func: T) => {
-        return useMemo(() => debounce(func, 200), [func]);
+    const useDebounced = <T extends (...args: any) => any>(func: T) => {
+        // eslint-disable-next-line
+        return useMemo(() => debounce(func, 200), []);
     }
 
     const updateCharges = (charges: Charges) => {
@@ -104,7 +105,6 @@ function App() {
             coproLocataire: chargesCoproLocataire
         }
         debouncedUpdateCharges(newValue)
-        // estlint-disable-next-line
     }, [debouncedUpdateCharges, fraisAgence, fraisNotaire, valeurBien, montantMeuble, montantTravaux, taxeFonciere, assurancePNO, garantieLoyerImpaye, chargesCoproProprietaire, chargesCoproLocataire, dureeAmortissementTravaux, dureeAmortissementMeubles, dureeAmortissementAgence, dureeAmortissementBien, dureeAmortissementNotaire]);
 
     const handleDureeAmortissementTravauxChange = (event: Event, newValue: number | number[]) => {
