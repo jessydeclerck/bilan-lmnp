@@ -1,7 +1,7 @@
 import {InputLabel, Paper} from "@mui/material";
 import {Charges, genererBilanPrevisionnel, LigneBilan} from "../services/BilanService";
 import {LigneAmortissement} from "../services/EmpruntService";
-import {GridColDef} from "@mui/x-data-grid";
+import {frFR, GridColDef, GridToolbar} from "@mui/x-data-grid";
 import {DataGrid} from "@mui/x-data-grid/DataGrid";
 
 const inputLabelStyle = {
@@ -65,6 +65,9 @@ function BilanPrevisionnel(props: BilanPrevisionnelProps): JSX.Element {
             disableSelectionOnClick
             disableColumnFilter
             disableColumnMenu
+            components={{ Toolbar: GridToolbar }}
+            componentsProps={{ toolbar: { printOptions: { disableToolbarButton: true }, csvOptions: {utf8WithBom: true} } }}
+            localeText={frFR.components.MuiDataGrid.defaultProps.localeText}
         />
     </Paper>;
 }

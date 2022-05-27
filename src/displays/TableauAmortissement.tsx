@@ -1,7 +1,7 @@
 import {LigneAmortissement} from "../services/EmpruntService";
 import {InputLabel, Paper} from "@mui/material";
 import {DataGrid} from "@mui/x-data-grid/DataGrid";
-import {GridColDef} from "@mui/x-data-grid";
+import {frFR, GridColDef, GridToolbar} from "@mui/x-data-grid";
 
 interface TableauAmortissementProps {
     tableauAmortissement: LigneAmortissement[];
@@ -40,6 +40,9 @@ function TableauAmortissement({tableauAmortissement}: TableauAmortissementProps)
             disableSelectionOnClick
             disableColumnFilter
             disableColumnMenu
+            components={{ Toolbar: GridToolbar }}
+            componentsProps={{ toolbar: { printOptions: { disableToolbarButton: true }, csvOptions: {utf8WithBom: true} } }}
+            localeText={frFR.components.MuiDataGrid.defaultProps.localeText}
         />
     </Paper>;
 }
