@@ -58,7 +58,7 @@ function AmortissementInput({
     const [notaireValueDisplayed, setNotaireValueDisplayed] = useState(dureeAmortissementNotaire);
     const [travauxValueDisplayed, setTravauxValueDisplayed] = useState(dureeAmortissementTravaux);
 
-    return <BilanParameterInput label={"Amortissements"} height={'415px'}>
+    return <BilanParameterInput label={"Amortissements"} minHeight={'415px'} height={'100%'}>
         <Box sx={{display: 'flex', flexDirection: 'column', width: '80%', alignSelf: 'center'}}>
             <Typography sx={typographyStyle}>Amortissement travaux
                 (années)</Typography>

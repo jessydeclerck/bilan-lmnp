@@ -1,4 +1,4 @@
-import {Grid, Input, InputAdornment, Slider} from "@mui/material";
+import {Box, Input, InputAdornment, Slider} from "@mui/material";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import {ChangeEventHandler, useState} from "react";
 import BilanParameterInput from "./BilanParameterInput";
@@ -16,7 +16,6 @@ const marks = [
     },
     {
         value: 1.5,
-        label: '1.5%'
     },
     {
         value: 2,
@@ -24,7 +23,6 @@ const marks = [
     },
     {
         value: 2.5,
-        label: '2.5%'
     },
     {
         value: 3,
@@ -32,7 +30,6 @@ const marks = [
     },
     {
         value: 3.5,
-        label: '3.5%'
     },
     {
         value: 4,
@@ -40,7 +37,6 @@ const marks = [
     },
     {
         value: 4.5,
-        label: '4.5%'
     },
 ]
 
@@ -62,11 +58,8 @@ function TauxEmpruntInput(props: TauxEmpruntProps): JSX.Element {
 
     return (
         <BilanParameterInput label={label}>
-            <Grid container spacing={2} justifyContent={"center"} sx={{marginTop: '0px'}}>
-                <Grid item>
+                <Box sx={{display: 'flex', alignItems: 'flex-start', justifyContent: 'space-evenly', paddingTop:'10px'}}>
                     <AccountBalanceIcon/>
-                </Grid>
-                <Grid item xs={8}>
                     <Slider
                         aria-label={label}
                         value={valueDisplayed}
@@ -80,13 +73,9 @@ function TauxEmpruntInput(props: TauxEmpruntProps): JSX.Element {
                         marks={marks}
                         min={stepsValue.min}
                         max={stepsValue.max}
-                        sx={{
-                            alignSelf: 'center',
-                        }}
+                        sx={{width: '65%'}}
                     >
                     </Slider>
-                </Grid>
-                <Grid item>
                     <Input
                         value={valueDisplayed}
                         onChange={(event) => {
@@ -103,8 +92,7 @@ function TauxEmpruntInput(props: TauxEmpruntProps): JSX.Element {
                         startAdornment={<InputAdornment position="end">%</InputAdornment>}
                         sx={{width: '70px'}}
                     />
-                </Grid>
-            </Grid>
+                </Box>
         </BilanParameterInput>
     );
 }

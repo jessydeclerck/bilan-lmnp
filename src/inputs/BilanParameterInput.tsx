@@ -4,6 +4,7 @@ interface BilanParameterProps {
     label: string;
     children: JSX.Element[] | JSX.Element;
     height?: string;
+    minHeight?: string
 }
 
 const inputLabelStyle = {
@@ -14,14 +15,16 @@ const inputLabelStyle = {
 }
 
 function BilanParameterInput(props: BilanParameterProps): JSX.Element {
-    const {label, children, height = '120px'} = props;
+    const {label, children, height = '120px', minHeight} = props;
 
     return <Paper elevation={3} sx={{
         padding: '5px 10px',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-start',
-        height
+        overflow:'auto',
+        height,
+        minHeight
     }}>
         <InputLabel sx={inputLabelStyle}>{label}</InputLabel>
         {children}
