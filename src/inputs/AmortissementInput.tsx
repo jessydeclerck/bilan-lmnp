@@ -38,6 +38,7 @@ interface AmortissementInputProps {
     handleDureeAmortissementAgenceChange: (event: Event, newValue: number | number[]) => void;
     handleDureeAmortissementBienChange: (event: Event, newValue: number | number[]) => void;
     handleDureeAmortissementNotaireChange: (event: Event, newValue: number | number[]) => void;
+    afficherAide: boolean;
 }
 
 function AmortissementInput({
@@ -50,7 +51,8 @@ function AmortissementInput({
                                 handleDureeAmortissementBienChange,
                                 handleDureeAmortissementMeublesChange,
                                 handleDureeAmortissementNotaireChange,
-                                handleDureeAmortissementTravauxChange
+                                handleDureeAmortissementTravauxChange,
+                                afficherAide
                             }: AmortissementInputProps): JSX.Element {
     const [agenceValueDisplayed, setAgenceValueDisplayed] = useState(dureeAmortissementAgence);
     const [bienValueDisplayed, setBienValueDisplayed] = useState(dureeAmortissementBien);
@@ -58,7 +60,7 @@ function AmortissementInput({
     const [notaireValueDisplayed, setNotaireValueDisplayed] = useState(dureeAmortissementNotaire);
     const [travauxValueDisplayed, setTravauxValueDisplayed] = useState(dureeAmortissementTravaux);
 
-    return <BilanParameterInput label={"Amortissements"} minHeight={'415px'} height={'100%'}>
+    return <BilanParameterInput label={"Amortissements"} minHeight={'415px'} height={'100%'} afficherAide={afficherAide}>
         <Box sx={{display: 'flex', flexDirection: 'column', width: '80%', alignSelf: 'center'}}>
             <Typography sx={typographyStyle}>Amortissement travaux
                 (années)</Typography>

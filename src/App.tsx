@@ -1,6 +1,17 @@
 import React, {ChangeEvent, useEffect, useMemo} from 'react';
 import './App.css';
-import {AppBar, Container, CssBaseline, Grid, SelectChangeEvent, ThemeOptions, Typography} from "@mui/material";
+import {
+    AppBar,
+    Container,
+    CssBaseline,
+    FormControlLabel,
+    Grid,
+    Paper,
+    SelectChangeEvent,
+    Switch,
+    ThemeOptions,
+    Typography
+} from "@mui/material";
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {amber, blue, grey} from "@mui/material/colors";
 import TauxEmpruntInput from "./inputs/TauxEmpruntInput";
@@ -55,6 +66,7 @@ const defaultCharges: Charges = {
 };
 
 function App() {
+    const [afficherAide, setAfficherAide] = useLocalStorage('afficherAide', false);
     const [tauxEmprunt, setTauxEmprunt] = useLocalStorage('tauxEmprunt', 1.5);
     const [montantEmprunt, setMontantEmprunt] = useLocalStorage('montantEmprunt', 0);
     const [dureePret, setDureePret] = useLocalStorage('dureePret', 20);
@@ -216,7 +228,17 @@ function App() {
                     </header>
                     <Container maxWidth="lg" className="container">
                         <main>
+
                             <Grid container spacing={2} sx={{marginTop: '0px'}}>
+                                <Grid item xs={12}>
+                                    <Paper elevation={3} sx={{paddingLeft: '10px'}}>
+                                        <FormControlLabel control={<Switch checked={afficherAide}
+                                                                           onChange={(event: ChangeEvent<HTMLInputElement>) => setAfficherAide(event.target.checked)}
+                                                                           color={"secondary"}/>}
+                                                          label={<Typography sx={{fontWeight: 'bold'}}>Afficher
+                                                              aide</Typography>}/>
+                                    </Paper>
+                                </Grid>
                                 <Grid item md={5} xs={12}>
                                     <TauxEmpruntInput value={tauxEmprunt}
                                                       handleInputChangeFunction={handleTauxInputChange}
@@ -273,16 +295,18 @@ function App() {
                                         />
                                     </Grid>
                                     <Grid item md={8} xs={12}>
-                                        <AmortissementInput dureeAmortissementMeubles={dureeAmortissementMeubles}
-                                                            dureeAmortissementTravaux={dureeAmortissementTravaux}
-                                                            dureeAmortissementAgence={dureeAmortissementAgence}
-                                                            dureeAmortissementBien={dureeAmortissementBien}
-                                                            dureeAmortissementNotaire={dureeAmortissementNotaire}
-                                                            handleDureeAmortissementAgenceChange={useDebounced(handleDureeAmortissementAgenceChange)}
-                                                            handleDureeAmortissementBienChange={useDebounced(handleDureeAmortissementBienChange)}
-                                                            handleDureeAmortissementMeublesChange={useDebounced(handleDureeAmortissementMeublesChange)}
-                                                            handleDureeAmortissementNotaireChange={useDebounced(handleDureeAmortissementNotaireChange)}
-                                                            handleDureeAmortissementTravauxChange={useDebounced(handleDureeAmortissementTravauxChange)}
+                                        <AmortissementInput
+                                            afficherAide={afficherAide}
+                                            dureeAmortissementMeubles={dureeAmortissementMeubles}
+                                            dureeAmortissementTravaux={dureeAmortissementTravaux}
+                                            dureeAmortissementAgence={dureeAmortissementAgence}
+                                            dureeAmortissementBien={dureeAmortissementBien}
+                                            dureeAmortissementNotaire={dureeAmortissementNotaire}
+                                            handleDureeAmortissementAgenceChange={useDebounced(handleDureeAmortissementAgenceChange)}
+                                            handleDureeAmortissementBienChange={useDebounced(handleDureeAmortissementBienChange)}
+                                            handleDureeAmortissementMeublesChange={useDebounced(handleDureeAmortissementMeublesChange)}
+                                            handleDureeAmortissementNotaireChange={useDebounced(handleDureeAmortissementNotaireChange)}
+                                            handleDureeAmortissementTravauxChange={useDebounced(handleDureeAmortissementTravauxChange)}
                                         />
                                     </Grid>
                                 </Grid>
