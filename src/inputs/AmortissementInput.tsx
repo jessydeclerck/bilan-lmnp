@@ -2,6 +2,7 @@ import BilanParameterInput from "./BilanParameterInput";
 import {Box, Slider, Typography} from "@mui/material";
 import {useState} from "react";
 import {generateMarks} from "../Utils/BilanUtils";
+import HelpIcon from '@mui/icons-material/Help';
 
 const defaultSliderSteps = {
     min: 5,
@@ -141,6 +142,7 @@ function AmortissementInput({
             >
             </Slider>
         </Box>
+            <HelpIcon sx={{fontSize:'small', marginLeft:'auto', color:'darkgrey'}}/>
     </BilanParameterInput>;
 }
 

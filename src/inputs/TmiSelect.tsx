@@ -11,7 +11,7 @@ function TmiSelect(props: TmiSelectProps): JSX.Element {
     const {tmi, handleTmiChange} = props;
 
     return <BilanParameterInput label={"Tranche marginale d'imposition"}>
-        <Box sx={{display: 'flex', justifyContent: 'center'}}>
+        <Box sx={{display: 'flex', justifyContent: 'center', marginTop:'auto', marginBottom:'auto'}}>
             <FormControl sx={{width: '80%'}}>
                 <InputLabel id="select-tmi">TMI</InputLabel>
                 <Select
