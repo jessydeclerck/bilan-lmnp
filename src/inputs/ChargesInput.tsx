@@ -2,6 +2,7 @@ import BilanParameterInput from "./BilanParameterInput";
 import {Box, InputAdornment, InputLabel, OutlinedInput} from "@mui/material";
 import {ChangeEventHandler} from "react";
 import FormControl from "@mui/material/FormControl";
+import PopoverInfo from "../displays/PopoverInfo";
 
 interface ChargesInputProps {
     taxeFonciere: number;
@@ -30,7 +31,9 @@ function ChargesInput(props: ChargesInputProps): JSX.Element {
         handleChargeCoproProprietaire
     } = props;
 
-    return <BilanParameterInput label={"Charges"} height={'415px'}>
+    const popoverInfo = <PopoverInfo>Charges annuelles non amortissables</PopoverInfo>
+
+    return <BilanParameterInput label={"Charges"} minHeight={'415px'} popoverInfo={popoverInfo}>
         <Box sx={{
             display: 'flex',
             flexDirection: 'column',

@@ -1,7 +1,8 @@
 import BilanParameterInput from "./BilanParameterInput";
 import {Box, Slider, Typography} from "@mui/material";
-import {useState} from "react";
+import React, {useState} from "react";
 import {generateMarks} from "../Utils/BilanUtils";
+import PopoverInfo from "../displays/PopoverInfo";
 
 const defaultSliderSteps = {
     min: 5,
@@ -57,8 +58,9 @@ function AmortissementInput({
     const [meublesValueDisplayed, setMeublesValueDisplayed] = useState(dureeAmortissementMeubles);
     const [notaireValueDisplayed, setNotaireValueDisplayed] = useState(dureeAmortissementNotaire);
     const [travauxValueDisplayed, setTravauxValueDisplayed] = useState(dureeAmortissementTravaux);
+    const popoverInfo = <PopoverInfo>cf. <a href={'https://www.nexity.fr/guide-immobilier/conseils-investissement/le-dispositif-lmnp/simulation-amortissement-lmnp'} target={'_blank'} rel={'noreferrer'}>L'AMORTISSEMENT LMNP : EXPLICATIONS</a></PopoverInfo>;
 
-    return <BilanParameterInput label={"Amortissements"} minHeight={'415px'} height={'100%'}>
+    return <BilanParameterInput label={"Amortissements"} minHeight={'415px'} height={'100%'} popoverInfo={popoverInfo}>
         <Box sx={{display: 'flex', flexDirection: 'column', width: '80%', alignSelf: 'center'}}>
             <Typography sx={typographyStyle}>Amortissement travaux
                 (années)</Typography>

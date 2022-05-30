@@ -4,18 +4,19 @@ interface BilanParameterProps {
     label: string;
     children: JSX.Element[] | JSX.Element;
     height?: string;
-    minHeight?: string
+    minHeight?: string;
+    popoverInfo?: JSX.Element | null;
 }
 
 const inputLabelStyle = {
     fontWeight: 'bold',
-    fontSize: '1.5em',
+    fontSize: '1.3em',
     lineHeight: 1.5,
     color: 'black',
 }
 
 function BilanParameterInput(props: BilanParameterProps): JSX.Element {
-    const {label, children, height = '120px', minHeight} = props;
+    const {label, children, height = '120px', minHeight, popoverInfo} = props;
 
     return <Paper elevation={3} sx={{
         padding: '5px 10px',
@@ -26,7 +27,7 @@ function BilanParameterInput(props: BilanParameterProps): JSX.Element {
         height,
         minHeight
     }}>
-        <InputLabel sx={inputLabelStyle}>{label}</InputLabel>
+        <InputLabel sx={inputLabelStyle}><>{label} {popoverInfo}</></InputLabel>
         {children}
     </Paper>;
 }

@@ -9,6 +9,7 @@ interface GenericAmountProps {
     step: number;
     value: number;
     handleChangeFunction: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+    popoverInfo?: JSX.Element | null;
 }
 
 const kebabCase = (s: string): string => {
@@ -19,7 +20,7 @@ const kebabCase = (s: string): string => {
 }
 
 function GenericAmountInput(props: GenericAmountProps): JSX.Element {
-    const {label, icon, value, step, handleChangeFunction} = props;
+    const {label, icon, value, step, handleChangeFunction, popoverInfo} = props;
     const labelKebabCase = kebabCase(label);
 
     const inputProps = {
@@ -29,8 +30,9 @@ function GenericAmountInput(props: GenericAmountProps): JSX.Element {
         'aria-labelledby': labelKebabCase,
     }
 
-    return <BilanParameterInput label={label}>
-        <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-evenly', height: '60%'}}>
+    return <BilanParameterInput label={label} minHeight={'120px'} popoverInfo={popoverInfo}>
+        <Box
+            sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-evenly', margin: 'auto', height: '60%'}}>
             {icon}
             <OutlinedInput
                 sx={{width: '75%'}}
