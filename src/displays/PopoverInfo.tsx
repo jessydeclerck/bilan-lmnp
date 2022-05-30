@@ -1,4 +1,4 @@
-import {Button, IconButton, makeStyles, Popover, Typography} from "@mui/material";
+import {IconButton, Popover, Typography} from "@mui/material";
 import HelpIcon from "@mui/icons-material/Help";
 import React, {ReactNode, useState} from "react";
 
@@ -24,7 +24,7 @@ function PopoverInfo({children}: PopoverInfoProps) {
 
     return (
         <>
-            <IconButton aria-describedby={id} onMouseEnter={handlePopoverOpen}
+            <IconButton aria-describedby={id} onClick={handlePopoverOpen}
                         sx={{marginLeft: 'auto', padding: '0'}}><HelpIcon
                 sx={{fontSize: 'small', color: 'darkgrey'}}/></IconButton>
             <Popover
@@ -40,7 +40,6 @@ function PopoverInfo({children}: PopoverInfoProps) {
                     vertical: 'top',
                     horizontal: 'left',
                 }}
-                PaperProps={{ onMouseEnter: handlePopoverOpen, onMouseLeave: handlePopoverClose }}
             >
                 <Typography sx={{p: 1}}>{children}</Typography>
             </Popover>
