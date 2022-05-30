@@ -1,8 +1,8 @@
 import BilanParameterInput from "./BilanParameterInput";
-import {Box, IconButton, Popover, Slider, Typography} from "@mui/material";
+import {Box, Slider, Typography} from "@mui/material";
 import React, {useState} from "react";
 import {generateMarks} from "../Utils/BilanUtils";
-import HelpIcon from '@mui/icons-material/Help';
+import PopoverInfo from "../displays/PopoverInfo";
 
 const defaultSliderSteps = {
     min: 5,
@@ -58,20 +58,9 @@ function AmortissementInput({
     const [meublesValueDisplayed, setMeublesValueDisplayed] = useState(dureeAmortissementMeubles);
     const [notaireValueDisplayed, setNotaireValueDisplayed] = useState(dureeAmortissementNotaire);
     const [travauxValueDisplayed, setTravauxValueDisplayed] = useState(dureeAmortissementTravaux);
-    const [anchorEl, setAnchorEl] = useState<HTMLElement|null>(null);
+    const popoverInfo = <PopoverInfo>aaaa</PopoverInfo>;
 
-    const open = Boolean(anchorEl);
-
-    const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handlePopoverClose = () => {
-        setAnchorEl(null);
-    };
-
-
-    return <BilanParameterInput label={"Amortissements"} minHeight={'415px'} height={'100%'}>
+    return <BilanParameterInput label={"Amortissements"} minHeight={'415px'} height={'100%'} popoverInfo={popoverInfo}>
         <Box sx={{display: 'flex', flexDirection: 'column', width: '80%', alignSelf: 'center'}}>
             <Typography sx={typographyStyle}>Amortissement travaux
                 (années)</Typography>
@@ -154,28 +143,6 @@ function AmortissementInput({
             >
             </Slider>
         </Box>
-        <IconButton onMouseEnter={handlePopoverOpen}
-             onMouseLeave={handlePopoverClose} sx={{marginLeft: 'auto', padding:'0'}}><HelpIcon sx={{fontSize: 'small', color: 'darkgrey'}}/></IconButton>
-        <Popover
-            id="mouse-over-popover"
-            sx={{
-                pointerEvents: 'none',
-            }}
-            open={open}
-            anchorEl={anchorEl}
-            anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-            }}
-            transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-            }}
-            onClose={handlePopoverClose}
-            disableRestoreFocus
-        >
-            <Typography sx={{p: 1}}>Description amortissement<br/>Plusieurs lignes ?.</Typography>
-        </Popover>
     </BilanParameterInput>;
 }
 

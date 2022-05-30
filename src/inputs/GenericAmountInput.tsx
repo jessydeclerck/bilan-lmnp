@@ -1,7 +1,6 @@
 import BilanParameterInput from "./BilanParameterInput";
 import {Box, InputAdornment, OutlinedInput} from "@mui/material";
 import {ChangeEventHandler} from "react";
-import HelpIcon from "@mui/icons-material/Help";
 
 
 interface GenericAmountProps {
@@ -10,7 +9,7 @@ interface GenericAmountProps {
     step: number;
     value: number;
     handleChangeFunction: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-    afficherAide?: boolean
+    popoverInfo?: JSX.Element | null;
 }
 
 const kebabCase = (s: string): string => {
@@ -21,7 +20,7 @@ const kebabCase = (s: string): string => {
 }
 
 function GenericAmountInput(props: GenericAmountProps): JSX.Element {
-    const {label, icon, value, step, handleChangeFunction, afficherAide = false} = props;
+    const {label, icon, value, step, handleChangeFunction, popoverInfo} = props;
     const labelKebabCase = kebabCase(label);
 
     const inputProps = {
@@ -31,8 +30,9 @@ function GenericAmountInput(props: GenericAmountProps): JSX.Element {
         'aria-labelledby': labelKebabCase,
     }
 
-    return <BilanParameterInput label={label}>
-        <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-evenly', margin:'auto', height:'60%'}}>
+    return <BilanParameterInput label={label} minHeight={'120px'} popoverInfo={popoverInfo}>
+        <Box
+            sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-evenly', margin: 'auto', height: '60%'}}>
             {icon}
             <OutlinedInput
                 sx={{width: '75%'}}
@@ -43,9 +43,6 @@ function GenericAmountInput(props: GenericAmountProps): JSX.Element {
                 endAdornment={<InputAdornment position="end">€</InputAdornment>}
             />
         </Box>
-        <>
-            {afficherAide && (<HelpIcon sx={{fontSize: 'small', marginLeft: 'auto', color: 'darkgrey'}}/>)}
-        </>
     </BilanParameterInput>;
 }
 

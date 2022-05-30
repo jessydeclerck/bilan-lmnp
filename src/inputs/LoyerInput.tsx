@@ -16,7 +16,7 @@ function LoyerInput(props: LoyerInputProps): JSX.Element {
 
     return (
         <BilanParameterInput label={(loyerHC + chargesLoyer > 0) ? label + ` (${loyerHC + chargesLoyer}€)` : label}>
-            <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-evenly', height: '60%'}}>
+            <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-evenly', height: '80%'}}>
                 <FormControl sx={{width: '45%'}}>
                     <InputLabel htmlFor={"outlined-adornment-loyer-hc"}>Loyer HC</InputLabel>
                     <OutlinedInput

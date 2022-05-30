@@ -1,6 +1,7 @@
 import FormControl from "@mui/material/FormControl";
 import BilanParameterInput from "./BilanParameterInput";
 import {Box, InputLabel, MenuItem, Select, SelectChangeEvent} from "@mui/material";
+import PopoverInfo from "../displays/PopoverInfo";
 
 interface TmiSelectProps {
     tmi: number;
@@ -10,7 +11,9 @@ interface TmiSelectProps {
 function TmiSelect(props: TmiSelectProps): JSX.Element {
     const {tmi, handleTmiChange} = props;
 
-    return <BilanParameterInput label={"Tranche marginale d'imposition"}>
+    const popoverInfo = <PopoverInfo>Test <br/> test test</PopoverInfo>;
+
+    return <BilanParameterInput label={"Tranche marginale d'imposition"} popoverInfo={popoverInfo}>
         <Box sx={{display: 'flex', justifyContent: 'center', marginTop:'auto', marginBottom:'auto'}}>
             <FormControl sx={{width: '80%'}}>
                 <InputLabel id="select-tmi">TMI</InputLabel>
