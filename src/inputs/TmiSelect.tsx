@@ -11,7 +11,7 @@ interface TmiSelectProps {
 function TmiSelect(props: TmiSelectProps): JSX.Element {
     const {tmi, handleTmiChange} = props;
 
-    const popoverInfo = <PopoverInfo>Test <br/> test test</PopoverInfo>;
+    const popoverInfo = <PopoverInfo><a href={'https://www.previssima.fr/simulateur/calcul-de-la-tranche-marginale-dimposition.html#calcul'} target={'_blank'} rel={'noreferrer'}>Calculer son TMI</a></PopoverInfo>;
 
     return <BilanParameterInput label={"Tranche marginale d'imposition"} popoverInfo={popoverInfo}>
         <Box sx={{display: 'flex', justifyContent: 'center', marginTop:'auto', marginBottom:'auto'}}>

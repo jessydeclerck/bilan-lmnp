@@ -31,7 +31,7 @@ function ChargesInput(props: ChargesInputProps): JSX.Element {
         handleChargeCoproProprietaire
     } = props;
 
-    const popoverInfo = <PopoverInfo>Charges annuelles</PopoverInfo>
+    const popoverInfo = <PopoverInfo>Charges annuelles non amortissables</PopoverInfo>
 
     return <BilanParameterInput label={"Charges"} minHeight={'415px'} popoverInfo={popoverInfo}>
         <Box sx={{

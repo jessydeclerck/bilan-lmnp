@@ -11,9 +11,14 @@ interface ValeurAppartementProps {
 function ValeurAppartementInput(props: ValeurAppartementProps): JSX.Element {
     const {valeurBien, handleValeurBienChange} = props;
 
+    const popoverInfo = <PopoverInfo>Il s'agit de la valeur du bien immobilier hors terrain.<br/>
+    <br/>Cette valeur est importante car en LMNP le bien en lui-même<br/> est considéré comme amortissable.<br/>
+        Plus d'infos: <a href={'https://www.nexity.fr/guide-immobilier/conseils-investissement/le-dispositif-lmnp/simulation-amortissement-lmnp'} target={'_blank'} rel={'noreferrer'}>L'AMORTISSEMENT LMNP : EXPLICATIONS</a>
+    </PopoverInfo>
+
     return <GenericAmountInput label={"Valeur bien nu"} icon={<ApartmentIcon/>} value={valeurBien} step={500}
                                handleChangeFunction={handleValeurBienChange}
-                               popoverInfo={<PopoverInfo>test <br/> test</PopoverInfo>}
+                               popoverInfo={popoverInfo}
     />;
 }
 

@@ -58,7 +58,7 @@ function AmortissementInput({
     const [meublesValueDisplayed, setMeublesValueDisplayed] = useState(dureeAmortissementMeubles);
     const [notaireValueDisplayed, setNotaireValueDisplayed] = useState(dureeAmortissementNotaire);
     const [travauxValueDisplayed, setTravauxValueDisplayed] = useState(dureeAmortissementTravaux);
-    const popoverInfo = <PopoverInfo>aaaa</PopoverInfo>;
+    const popoverInfo = <PopoverInfo>cf. <a href={'https://www.nexity.fr/guide-immobilier/conseils-investissement/le-dispositif-lmnp/simulation-amortissement-lmnp'} target={'_blank'} rel={'noreferrer'}>L'AMORTISSEMENT LMNP : EXPLICATIONS</a></PopoverInfo>;
 
     return <BilanParameterInput label={"Amortissements"} minHeight={'415px'} height={'100%'} popoverInfo={popoverInfo}>
         <Box sx={{display: 'flex', flexDirection: 'column', width: '80%', alignSelf: 'center'}}>
