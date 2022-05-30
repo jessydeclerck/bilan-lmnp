@@ -55,7 +55,7 @@ function ChargesInput(props: ChargesInputProps): JSX.Element {
                         type: 'number',
                         'aria-labelledby': 'Taxe foncière',
                     }}
-                    endAdornment={<InputAdornment position="end">€</InputAdornment>}
+                    endAdornment={<InputAdornment position="end">€/an</InputAdornment>}
                 />
             </FormControl>
             <FormControl>
@@ -72,7 +72,7 @@ function ChargesInput(props: ChargesInputProps): JSX.Element {
                         type: 'number',
                         'aria-labelledby': 'Assurance PNO',
                     }}
-                    endAdornment={<InputAdornment position="end">€</InputAdornment>}
+                    endAdornment={<InputAdornment position="end">€/an</InputAdornment>}
                 />
             </FormControl>
             <FormControl>
@@ -89,7 +89,7 @@ function ChargesInput(props: ChargesInputProps): JSX.Element {
                         type: 'number',
                         'aria-labelledby': 'Garantie loyer impayé',
                     }}
-                    endAdornment={<InputAdornment position="end">€</InputAdornment>}
+                    endAdornment={<InputAdornment position="end">€/an</InputAdornment>}
                 />
             </FormControl>
             <FormControl>
@@ -106,7 +106,7 @@ function ChargesInput(props: ChargesInputProps): JSX.Element {
                         type: 'number',
                         'aria-labelledby': 'Charges copro propriétaire',
                     }}
-                    endAdornment={<InputAdornment position="end">€</InputAdornment>}
+                    endAdornment={<InputAdornment position="end">€/an</InputAdornment>}
                 />
             </FormControl>
             <FormControl>
@@ -123,7 +123,7 @@ function ChargesInput(props: ChargesInputProps): JSX.Element {
                         type: 'number',
                         'aria-labelledby': 'Charges copro locataire',
                     }}
-                    endAdornment={<InputAdornment position="end">€</InputAdornment>}
+                    endAdornment={<InputAdornment position="end">€/an</InputAdornment>}
                 />
             </FormControl>
         </Box>
