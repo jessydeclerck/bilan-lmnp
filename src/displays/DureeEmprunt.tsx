@@ -29,7 +29,7 @@ const dureeMarks = generateMarks(dureeEmpruntSteps, ' ans');
 function DureeEmprunt(props: MensualitesProps): JSX.Element {
     const {taux, capital, dureePret, handleDureePretChange} = props;
     const [valueDisplayed, setValueDisplayed] = useState(dureePret);
-    const popoverInfo = <PopoverInfo>Méthode de calcul des mensualités utilisée: <br/><a href={'https://www.inc-conso.fr/content/comment-sont-calculees-les-mensualites-de-votre-emprunt'} target='_blank'>Comment sont calculées les<br/>mensualités de votre emprunt ?</a></PopoverInfo>;
+    const popoverInfo = <PopoverInfo>Méthode de calcul des mensualités utilisée: <br/><a href={'https://www.inc-conso.fr/content/comment-sont-calculees-les-mensualites-de-votre-emprunt'} target='_blank' rel={'noreferrer'}>Comment sont calculées les<br/>mensualités de votre emprunt ?</a></PopoverInfo>;
 
 
     return <Paper elevation={3} sx={{
