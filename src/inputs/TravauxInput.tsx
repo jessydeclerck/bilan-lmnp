@@ -12,7 +12,7 @@ interface TravauxInputProps {
 function TravauxInput(props: TravauxInputProps): JSX.Element {
     const {montantTravaux, handleMontantTravauxChange} = props;
 
-    return <GenericAmountInput label={label} icon={<HandymanIcon/>} value={montantTravaux} step={100}
+    return <GenericAmountInput id={'travaux-input'} label={label} icon={<HandymanIcon/>} value={montantTravaux} step={100}
                                handleChangeFunction={handleMontantTravauxChange}/>;
 }
 

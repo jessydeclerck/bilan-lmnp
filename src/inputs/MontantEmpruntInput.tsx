@@ -12,7 +12,7 @@ interface MontantEmpruntProps {
 function MontantEmpruntInput(props: MontantEmpruntProps): JSX.Element {
     const {value, handleInputChange} = props;
 
-    return <GenericAmountInput label={label} icon={<AccountBalanceIcon/>} value={value} step={500}
+    return <GenericAmountInput id={'montant-emprunt-input'} label={label} icon={<AccountBalanceIcon/>} value={value} step={500}
                                handleChangeFunction={handleInputChange}/>
 }
 

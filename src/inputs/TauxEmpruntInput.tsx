@@ -61,6 +61,7 @@ function TauxEmpruntInput(props: TauxEmpruntProps): JSX.Element {
                 <Box sx={{display: 'flex', alignItems: 'flex-start', justifyContent: 'space-evenly', paddingTop:'10px'}}>
                     <AccountBalanceIcon/>
                     <Slider
+                        id={'taux-emprunt-slider'}
                         aria-label={label}
                         value={valueDisplayed}
                         onChange={(event, newValue) => {
@@ -77,6 +78,7 @@ function TauxEmpruntInput(props: TauxEmpruntProps): JSX.Element {
                     >
                     </Slider>
                     <Input
+                        id={'taux-emprunt-input'}
                         value={valueDisplayed}
                         onChange={(event) => {
                             setValueDisplayed(Number(event.target.value));

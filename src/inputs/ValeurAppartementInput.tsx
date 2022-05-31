@@ -16,7 +16,7 @@ function ValeurAppartementInput(props: ValeurAppartementProps): JSX.Element {
         Plus d'infos: <a href={'https://www.nexity.fr/guide-immobilier/conseils-investissement/le-dispositif-lmnp/simulation-amortissement-lmnp'} target={'_blank'} rel={'noreferrer'}>L'AMORTISSEMENT LMNP : EXPLICATIONS</a>
     </PopoverInfo>
 
-    return <GenericAmountInput label={"Valeur bien nu"} icon={<ApartmentIcon/>} value={valeurBien} step={500}
+    return <GenericAmountInput id={'valeur-appartement-input'} label={"Valeur bien nu"} icon={<ApartmentIcon/>} value={valeurBien} step={500}
                                handleChangeFunction={handleValeurBienChange}
                                popoverInfo={popoverInfo}
     />;

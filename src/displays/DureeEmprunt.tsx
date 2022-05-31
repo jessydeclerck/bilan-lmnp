@@ -48,6 +48,7 @@ function DureeEmprunt(props: MensualitesProps): JSX.Element {
             fontWeight: 'bold'
         }}>
             <Slider
+                id={'duree-emprunt-input'}
                 aria-label={"Durée emprunt"}
                 value={valueDisplayed}
                 onChange={(event, newValue) => {

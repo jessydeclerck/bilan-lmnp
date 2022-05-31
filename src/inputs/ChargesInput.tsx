@@ -44,7 +44,7 @@ function ChargesInput(props: ChargesInputProps): JSX.Element {
             <FormControl>
                 <InputLabel htmlFor={"taxe-fonciere"}>Taxe foncière</InputLabel>
                 <OutlinedInput
-                    id={'taxe-fonciere'}
+                    id={'taxe-fonciere-input'}
                     label={"Taxe foncière"}
                     value={taxeFonciere}
                     onChange={handleTaxeFonciereChange}
@@ -61,7 +61,7 @@ function ChargesInput(props: ChargesInputProps): JSX.Element {
             <FormControl>
                 <InputLabel htmlFor={"assurance-pno"}>Assurance PNO</InputLabel>
                 <OutlinedInput
-                    id={"assurance-pno"}
+                    id={"assurance-pno-input"}
                     label={"Assurance PNO"}
                     value={assurancePNO}
                     onChange={handleAssurancePNOChange}
@@ -78,7 +78,7 @@ function ChargesInput(props: ChargesInputProps): JSX.Element {
             <FormControl>
                 <InputLabel htmlFor={"garantie-loyer-impaye"}>Garantie loyer impayé</InputLabel>
                 <OutlinedInput
-                    id={"garantie-loyer-impaye"}
+                    id={"garantie-loyer-impaye-input"}
                     label={"Garantie loyer impayé"}
                     value={garantieLoyerImpaye}
                     onChange={handleGarantieLoyerImpayeChange}
@@ -95,7 +95,7 @@ function ChargesInput(props: ChargesInputProps): JSX.Element {
             <FormControl>
                 <InputLabel htmlFor={"charges-copro-proprietaire"}>Charges copro propriétaire</InputLabel>
                 <OutlinedInput
-                    id={"charges-copro-proprietaire"}
+                    id={"charges-copro-proprietaire-input"}
                     label={"Charges copro propriétaire"}
                     value={chargesCoproProprietaire}
                     onChange={handleChargeCoproProprietaire}
@@ -112,7 +112,7 @@ function ChargesInput(props: ChargesInputProps): JSX.Element {
             <FormControl>
                 <InputLabel htmlFor={"charges-copro-locataire"}>Charges copro locataire</InputLabel>
                 <OutlinedInput
-                    id={"charges-copro-locataire"}
+                    id={"charges-copro-locataire-input"}
                     label={"Charges copro locataire"}
                     value={chargesCoproLocataire}
                     onChange={handleChargesCoproLocataire}

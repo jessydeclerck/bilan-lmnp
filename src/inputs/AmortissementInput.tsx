@@ -65,6 +65,7 @@ function AmortissementInput({
             <Typography sx={typographyStyle}>Amortissement travaux
                 (années)</Typography>
             <Slider
+                id={'amortissement-travaux-slider'}
                 aria-label={"Amortissement travaux"}
                 value={travauxValueDisplayed}
                 onChange={(event, newValue) => {
@@ -81,6 +82,7 @@ function AmortissementInput({
             <Typography sx={typographyStyle}>Amortissement meubles
                 (années)</Typography>
             <Slider
+                id={'amortissement-meubles-slider'}
                 aria-label={"Amortissement meubles"}
                 value={meublesValueDisplayed}
                 onChange={(event, newValue) => {
@@ -97,6 +99,7 @@ function AmortissementInput({
             <Typography sx={typographyStyle}>Amortissement frais d'agence
                 (années)</Typography>
             <Slider
+                id={'amortissement-agence-slider'}
                 aria-label={"Amortissement frais d'agence"}
                 value={agenceValueDisplayed}
                 onChange={(event, newValue) => {
@@ -113,6 +116,7 @@ function AmortissementInput({
             <Typography sx={typographyStyle}>Amortissement du bien
                 (années)</Typography>
             <Slider
+                id={'amortissement-bien-slider'}
                 aria-label={"Amortissement du bien"}
                 value={bienValueDisplayed}
                 onChange={(event, newValue) => {
@@ -129,6 +133,7 @@ function AmortissementInput({
             <Typography sx={typographyStyle}>Amortissement frais de notaire
                 (années)</Typography>
             <Slider
+                id={'amortissement-notaire-slider'}
                 aria-label={"Amortissement frais de notaire"}
                 value={notaireValueDisplayed}
                 onChange={(event, newValue) => {

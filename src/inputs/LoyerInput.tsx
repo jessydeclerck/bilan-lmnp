@@ -18,9 +18,9 @@ function LoyerInput(props: LoyerInputProps): JSX.Element {
         <BilanParameterInput label={(loyerHC + chargesLoyer > 0) ? label + ` (${loyerHC + chargesLoyer}€)` : label}>
             <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-evenly', height: '80%'}}>
                 <FormControl sx={{width: '45%'}}>
-                    <InputLabel htmlFor={"outlined-adornment-loyer-hc"}>Loyer HC</InputLabel>
+                    <InputLabel htmlFor={"loyer-hc-input"}>Loyer HC</InputLabel>
                     <OutlinedInput
-                        id={"outlined-adornment-loyer-hc"}
+                        id={"loyer-hc-input"}
                         label={"Loyer HC"}
                         value={loyerHC}
                         onChange={handleLoyerHCChange}
@@ -35,9 +35,9 @@ function LoyerInput(props: LoyerInputProps): JSX.Element {
                     />
                 </FormControl>
                 <FormControl sx={{width: '45%'}}>
-                    <InputLabel htmlFor={"outlined-adornment-charges"}>Charges</InputLabel>
+                    <InputLabel htmlFor={"charges-loyer-input"}>Charges</InputLabel>
                     <OutlinedInput
-                        id={"outlined-adornment-charges"}
+                        id={"charges-loyer-input"}
                         label={"Charges"}
                         value={chargesLoyer}
                         onChange={handleChargesLoyerChange}

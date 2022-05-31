@@ -4,6 +4,7 @@ import {ChangeEventHandler} from "react";
 
 
 interface GenericAmountProps {
+    id:string;
     label: string;
     icon: JSX.Element;
     step: number;
@@ -20,7 +21,7 @@ const kebabCase = (s: string): string => {
 }
 
 function GenericAmountInput(props: GenericAmountProps): JSX.Element {
-    const {label, icon, value, step, handleChangeFunction, popoverInfo} = props;
+    const {label, icon, value, step, handleChangeFunction, popoverInfo, id} = props;
     const labelKebabCase = kebabCase(label);
 
     const inputProps = {
@@ -35,6 +36,7 @@ function GenericAmountInput(props: GenericAmountProps): JSX.Element {
             sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-evenly', margin: 'auto', height: '60%'}}>
             {icon}
             <OutlinedInput
+                id={id}
                 sx={{width: '75%'}}
                 value={value}
                 onChange={handleChangeFunction}

@@ -12,7 +12,7 @@ interface FraisAgenceProps {
 function FraisAgenceInput(props: FraisAgenceProps): JSX.Element {
     const {fraisAgence, handleFraisAgenceChange} = props;
 
-    return <GenericAmountInput label={label} icon={<PersonSearchIcon/>} value={fraisAgence} step={100}
+    return <GenericAmountInput id={'frais-agence-input'} label={label} icon={<PersonSearchIcon/>} value={fraisAgence} step={100}
                                handleChangeFunction={handleFraisAgenceChange}/>
 }
 

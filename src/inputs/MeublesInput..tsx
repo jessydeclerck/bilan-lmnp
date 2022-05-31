@@ -10,7 +10,7 @@ interface MeublesInputProps {
 function MeublesInput(props: MeublesInputProps): JSX.Element {
     const {montantMeuble, handleMontantMeubleChange} = props;
 
-    return <GenericAmountInput label={"Meubles"} step={100} icon={<ChairIcon/>} value={montantMeuble}
+    return <GenericAmountInput id={'meubles-input'} label={"Meubles"} step={100} icon={<ChairIcon/>} value={montantMeuble}
                                handleChangeFunction={handleMontantMeubleChange}/>
 }
 
